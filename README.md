@@ -17,6 +17,8 @@ A backend service for LMS of the Course Management System. This project is curre
     
     1. Project setup complete
     2. Project structure complete
+    3. JWT is ready and implemented in Login 
+    4. Authentication part is ready i.e login and SignUp
 
 
 # Activity Log :
@@ -31,3 +33,10 @@ A backend service for LMS of the Course Management System. This project is curre
     • Common, Constants, Mapper, Entity , DTO, ErrorMessage are done
     • Starting from Login request and response DTO
     • Lambok and jpa and jakarta dependencies added
+
+### 2025/12/10
+
+    • Connection with Database is established and User Table is Created 
+    • Login and Signup is done with database and endpoints are ready 
+    • Authentication part is finished   
+    • All the Config and security has been created (JWT & Web config and Security config )
