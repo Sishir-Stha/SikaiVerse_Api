@@ -13,7 +13,7 @@ import lombok.Data;
 public class AuthUserEntity {
     @Id
     @Column(name = "userid")
-    private Long userid;
+    private Long userId;
 
     @Column(name = "fullname")
     private String fullName;

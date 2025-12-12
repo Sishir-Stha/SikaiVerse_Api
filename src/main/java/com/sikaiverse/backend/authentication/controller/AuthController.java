@@ -2,11 +2,14 @@ package com.sikaiverse.backend.authentication.controller;
 
 import com.sikaiverse.backend.authentication.dto.request.LoginRequest;
 import com.sikaiverse.backend.authentication.dto.request.SignUpRequest;
+import com.sikaiverse.backend.authentication.dto.response.LoginDataResponse;
 import com.sikaiverse.backend.authentication.dto.response.LoginResponse;
 import com.sikaiverse.backend.authentication.entity.AuthUserEntity;
+import com.sikaiverse.backend.authentication.mapper.DataMapper;
 import com.sikaiverse.backend.authentication.service.AuthService;
 import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
+import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.security.JwtTokenUtil;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import jakarta.validation.Valid;
@@ -23,24 +26,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(ApiConstants.AUTH_BASE)
 public class AuthController {
 
+private final AuthService authService;
+private final DataMapper dataMapper;
+
 @Autowired
-private AuthService authService;
+public AuthController(AuthService authService, DataMapper dataMapper){
+    this.authService = authService;
+    this.dataMapper = dataMapper;
+}
 
     @PostMapping("/login")
     public ResponseEntity<?> login (@Valid @RequestBody LoginRequest request){
         try {
-            AuthUserEntity reponse = authService.login(request.getEmail(), request.getPassword());
-            if (reponse != null){
+            AuthUserEntity response = authService.login(request.getEmail(), request.getPassword());
+            if (response != null){
                 log.info("<<Auth logging Request recieved>>");
-                String token = JwtTokenUtil.generateToken(reponse.getEmail());
-                return ResponseEntity.ok(new LoginResponse(200,token, reponse.getFullName(), reponse.getRole()));
+                String token = JwtTokenUtil.generateToken(response.getEmail());
+                LoginDataResponse data = dataMapper.responseMapper(token,response.getFullName(),response.getPassword());
+                return ResponseEntity.ok(new LoginResponse(StatusConstants.SUCCESS, data));
             }else{
                 log.debug("User is null ( Invalid user or credentials )");
-                return ResponseEntity.status(HttpConstants.INVALID_CREDENTIALS).body(new ErrorMessage(401,"Invalid Credentials"));
+                return ResponseEntity.status(HttpConstants.INVALID_CREDENTIALS).body(new ErrorMessage(StatusConstants.FAILURE,"Invalid Credentials"));
             }
         }catch (Exception e){
             log.error("Error occurred during login for user: {}", request.getEmail(), e);
-            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(500,"Server Error "));
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE,"Server Error "));
         }
     }
 
@@ -48,17 +58,18 @@ private AuthService authService;
     @PostMapping("/signup")
     public ResponseEntity<?> signup (@Valid @RequestBody SignUpRequest request){
         try {
-            boolean reponse = authService.insertuser(request);
-            if (reponse){
+            boolean created = authService.insertuser(request);
+            if (created){
                 log.info("<< " +request.getRole()+" Created Sucessfully>>");
-                return ResponseEntity.ok(reponse);
+                String response = "success : "+created;
+                return ResponseEntity.ok(response);
             }else{
                 log.debug("User is null ( Invalid user or credentials )");
-                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(422,"Failed to create user"));
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE,"Failed to create user"));
             }
         }catch (Exception e){
             log.error("Error occurred during login for user: {}", request.getEmail(), e);
-            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(500,"Server Error "));
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE,"Server Error "));
         }
     }
 

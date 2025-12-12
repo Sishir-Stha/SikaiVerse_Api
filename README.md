@@ -7,11 +7,11 @@ A backend service for LMS of the Course Management System. This project is curre
 #### Project Stage : Early Stages of foundation
 
 # TechStack :
-             • Java 21 
+         - Java 21 
         
-             • Spring Boot
+         - Spring Boot
         
-             • Maven
+         - Maven
 
 # Current Features :
     
@@ -25,18 +25,26 @@ A backend service for LMS of the Course Management System. This project is curre
 
 ### 2025/12/07 
     
-    • Project Started or initialized and pushed to the Git and created a seperate branch for development
+- Project Started or initialized and pushed to the Git and created a seperate branch for development
     
 ### 2025/12/08
 
-    • Project Structure is done ( Controller > Service > Repository ) 
-    • Common, Constants, Mapper, Entity , DTO, ErrorMessage are done
-    • Starting from Login request and response DTO
-    • Lambok and jpa and jakarta dependencies added
+- Project Structure is done ( Controller > Service > Repository ) 
+- Common, Constants, Mapper, Entity , DTO, ErrorMessage are done
+- Starting from Login request and response DTO
+- Lambok and jpa and jakarta dependencies added
 
 ### 2025/12/10
 
-    • Connection with Database is established and User Table is Created 
-    • Login and Signup is done with database and endpoints are ready 
-    • Authentication part is finished   
-    • All the Config and security has been created (JWT & Web config and Security config )
+- Connection with Database is established and User Table is Created 
+- Login and Signup is done with database and endpoints are ready 
+- Authentication part is finished   
+- All the Config and security has been created (JWT & Web config and Security config )
+
+
+### 2025/12/12
+
+- Added Get and Insert endpoint for the Courses 
+- Get endpoint is for the explore page and insert is for admin page 
+- Need to add edit endpoint now 
+- Also changed the response format for every endpoint including auth and course

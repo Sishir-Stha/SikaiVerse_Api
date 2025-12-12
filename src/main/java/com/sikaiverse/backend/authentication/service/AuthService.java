@@ -1,6 +1,6 @@
 package com.sikaiverse.backend.authentication.service;
 
-import com.sikaiverse.backend.authentication.dto.request.*;
+import com.sikaiverse.backend.authentication.dto.request.SignUpRequest;
 import com.sikaiverse.backend.authentication.entity.AuthUserEntity;
 import com.sikaiverse.backend.authentication.repository.AuthRepository;
 import lombok.extern.slf4j.Slf4j;
