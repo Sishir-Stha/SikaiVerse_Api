@@ -48,3 +48,8 @@ A backend service for LMS of the Course Management System. This project is curre
 - Get endpoint is for the explore page and insert is for admin page 
 - Need to add edit endpoint now 
 - Also changed the response format for every endpoint including auth and course
+
+### 2025/12/15
+
+- Changed the project structure a little bit
+- Added the getDasboard endpoint which gives all the data for student dashboard

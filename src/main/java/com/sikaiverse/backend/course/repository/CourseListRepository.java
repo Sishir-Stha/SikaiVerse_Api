@@ -11,9 +11,10 @@ import java.util.List;
 @Repository
 public interface CourseListRepository extends JpaRepository<CourseListEntity,Long> {
 
-    @Query(value = "SELECT * FROM get_courses_filters(:level, :category, :title, CAST(:rating AS NUMERIC))",nativeQuery = true)
+    @Query(value = "SELECT * FROM get_courses_filters(:courseId,:level, :category, :title, CAST(:rating AS NUMERIC))",nativeQuery = true)
 
-    public List<CourseListEntity> listFilteredCourse(@Param("level") String level,
+    public List<CourseListEntity> listFilteredCourse(@Param("courseId") int courseId,
+                                                     @Param("level") String level,
                                                      @Param("category") String category,
                                                      @Param("title") String title,
                                                      @Param("rating") double rating);

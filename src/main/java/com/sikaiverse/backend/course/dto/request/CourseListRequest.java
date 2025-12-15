@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class CourseListRequest {
 
+    private int courseId;
+
     private String level;
 
     private String category;

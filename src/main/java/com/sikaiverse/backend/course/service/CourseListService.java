@@ -27,7 +27,7 @@ public class CourseListService {
 
     public List<CourseDataResponse> listFilteredCourse(CourseListRequest request){
 
-        List<CourseListEntity> entityList = courseListRepository.listFilteredCourse(request.getLevel(), request.getCategory(), request.getTitle(), request.getRating());
+        List<CourseListEntity> entityList = courseListRepository.listFilteredCourse(request.getCourseId(),request.getLevel(), request.getCategory(), request.getTitle(), request.getRating());
         if(entityList != null && !entityList.isEmpty()){
             return mapper.courseListMapper(entityList);
         }else{
