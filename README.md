@@ -52,4 +52,10 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2025/12/15
 
 - Changed the project structure a little bit
-- Added the getDasboard endpoint which gives all the data for student dashboard
+- Added the getDashboard endpoint which gives all the data for student dashboard
+
+### 2025/12/17
+
+-- added enpoint for course tabs page for the students
+-- added the endpoint for the dashboard for instructors 
+-- make project structure for the course page

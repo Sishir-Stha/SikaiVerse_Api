@@ -1,9 +1,9 @@
-package com.sikaiverse.backend.student.dto.response;
+package com.sikaiverse.backend.student.dto.response.dashboard;
 
 import lombok.Data;
 
 @Data
-public class DashboardCourseData {
+public class StudentDashboardCourseData {
     private int courseId;
     private String courseTitle;
     private String courseDescription;

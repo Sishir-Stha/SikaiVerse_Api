@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class UserIdRequest {
+public class StudentIdRequest {
 
     @NotBlank(message = " User Id is required ")
     private int userId;

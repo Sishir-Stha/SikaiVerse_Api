@@ -1,14 +1,14 @@
-package com.sikaiverse.backend.student.dto.response;
+package com.sikaiverse.backend.student.dto.response.dashboard;
 
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class DashboardInfoData {
+public class StudentDashboardInfoData {
     private int totalCourse;
     private int completed;
     private int inProgress;
     private int studyTime;
-    private List<DashboardCourseData> courseData;
+    private List<StudentDashboardCourseData> courseData;
 }

@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class DashboardInfoEntity {
+public class StudentDashboardInfoEntity {
 
     @Id
     @Column(name = "total_courses")

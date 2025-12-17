@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class CourseInfoEntity {
+public class StudentCourseInfoEntity {
 
     @Id
     @Column(name = "course_id")
@@ -24,12 +24,12 @@ public class CourseInfoEntity {
     private String level;
 
     @Column(name = "instructor_name")
-    private String InstructorName;
+    private String instructorName;
 
     @Column(name = "total_modules")
     private int totalModule;
 
-    @Column(name = "total_lesson")
+    @Column(name = "total_lessons")
     private int totalLesson;
 
     @Column(name = "total_duration")

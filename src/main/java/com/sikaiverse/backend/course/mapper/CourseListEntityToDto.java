@@ -1,9 +1,7 @@
 package com.sikaiverse.backend.course.mapper;
 
 import com.sikaiverse.backend.course.dto.response.CourseDataResponse;
-import com.sikaiverse.backend.course.dto.response.CourseListResponse;
 import com.sikaiverse.backend.course.entity.CourseListEntity;
-import jakarta.validation.groups.ConvertGroup;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

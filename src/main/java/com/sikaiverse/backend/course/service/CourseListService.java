@@ -3,7 +3,6 @@ package com.sikaiverse.backend.course.service;
 import com.sikaiverse.backend.course.dto.request.CourseInsertRequest;
 import com.sikaiverse.backend.course.dto.request.CourseListRequest;
 import com.sikaiverse.backend.course.dto.response.CourseDataResponse;
-import com.sikaiverse.backend.course.dto.response.CourseListResponse;
 import com.sikaiverse.backend.course.entity.CourseListEntity;
 import com.sikaiverse.backend.course.mapper.CourseListEntityToDto;
 import com.sikaiverse.backend.course.repository.CourseListRepository;
