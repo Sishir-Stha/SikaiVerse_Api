@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class InstructorIdRequest {
 
-    @NotBlank(message = " User Id is required ")
+    @NotBlank(message = " Instructor Id is required ")
     private int userId;
 }

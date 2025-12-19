@@ -1,5 +1,4 @@
-package com.sikaiverse.backend.instructor.entity;
-
+package com.sikaiverse.backend.admin.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,8 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class InstructorCourseInfoEntity {
-
+public class AdminCourseInfoEntity {
 
     @Id
     @Column(name = "course_id")
@@ -38,6 +36,5 @@ public class InstructorCourseInfoEntity {
 
     @Column(name = "rating")
     private double rating;
-
 
 }

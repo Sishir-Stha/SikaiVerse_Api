@@ -5,14 +5,8 @@ import com.sikaiverse.backend.instructor.dto.response.dashboard.InstructorDashbo
 import com.sikaiverse.backend.instructor.entity.InstructorDashboardInfoEntity;
 import com.sikaiverse.backend.instructor.mapper.InstructorEntityToDto;
 import com.sikaiverse.backend.instructor.repository.InstructorDashboardRepository;
-import com.sikaiverse.backend.student.dto.request.StudentIdRequest;
-import com.sikaiverse.backend.student.dto.response.dashboard.StudentDashboardInfoData;
-import com.sikaiverse.backend.student.entity.StudentDashboardInfoEntity;
-import org.hibernate.query.sql.internal.ParameterRecognizerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class InstructorDashboardService {

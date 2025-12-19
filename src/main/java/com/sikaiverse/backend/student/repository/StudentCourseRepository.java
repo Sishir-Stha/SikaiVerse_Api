@@ -1,6 +1,5 @@
 package com.sikaiverse.backend.student.repository;
 
-import com.sikaiverse.backend.student.dto.response.course.StudentCourseInfoData;
 import com.sikaiverse.backend.student.entity.StudentCourseInfoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
