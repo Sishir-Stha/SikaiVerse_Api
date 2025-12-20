@@ -5,7 +5,6 @@ import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInf
 import com.sikaiverse.backend.instructor.entity.InstructorCourseInfoEntity;
 import com.sikaiverse.backend.instructor.mapper.InstructorEntityToDto;
 import com.sikaiverse.backend.instructor.repository.InstructorCourseRepository;
-import com.sikaiverse.backend.utility.dto.request.course.CourseInsertRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,18 +30,18 @@ public class InstructorCourseService {
             return null;
         }
     }
-
-    public Boolean addCourse(CourseInsertRequest req) {
-        return instructorCourseRepository.insertCourse(
-                req.getTitle(),
-                req.getDescription(),
-                req.getInstructorId(),
-                req.getCategory(),
-                req.getLevel().toLowerCase(),
-                req.getDuration(),
-                req.getImage(),
-                req.getRating(),
-                req.getTotalStudents()
-        );
-    }
+//
+//    public Boolean addCourse(CourseInsertRequest req) {
+//        return instructorCourseRepository.insertCourse(
+//                req.getTitle(),
+//                req.getDescription(),
+//                req.getInstructorId(),
+//                req.getCategory(),
+//                req.getLevel().toLowerCase(),
+//                req.getDuration(),
+//                req.getImage(),
+//                req.getRating(),
+//                req.getTotalStudents()
+//        );
+//    }
 }

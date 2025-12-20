@@ -65,3 +65,9 @@ A backend service for LMS of the Course Management System. This project is curre
 - added the endpoint for instructor course page
 - added the endpoint for the admin dashboard and course page 
 - revised the project structure a little bit ( Utility package will contain the common endpoints )
+
+### 2025/12/21
+
+- change the project structure again removed utility and added shared for shared endpoints
+- completed discussion endpoint
+- added user endpoint in the admin controller package

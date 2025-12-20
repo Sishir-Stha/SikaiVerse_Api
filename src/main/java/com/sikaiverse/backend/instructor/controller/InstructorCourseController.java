@@ -8,12 +8,13 @@ import com.sikaiverse.backend.instructor.dto.request.InstructorIdRequest;
 import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoData;
 import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseResponse;
 import com.sikaiverse.backend.instructor.service.InstructorCourseService;
-import com.sikaiverse.backend.utility.dto.request.course.CourseInsertRequest;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -46,21 +47,21 @@ public class InstructorCourseController {
         }
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<?> insertCourse(@Valid @RequestBody CourseInsertRequest request){
-        try{
-            Boolean isCreated = instructorCourseService.addCourse(request);
-            String response = "success : " +isCreated;
-            if(isCreated){
-                log.info("<< Course inserted Sucessfully with title : " +request.getTitle() +" >>");
-                return ResponseEntity.ok(response);
-            }else{
-                log.debug("<< Failed in inserting the course >>");
-                return ResponseEntity.status(HttpConstants.FAILED).body(response);
-            }
-        }catch(Exception e){
-            log.error("Error while inserting the course of title  : {}",request.getTitle(), e);
-            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
-        }
-    }
+//    @PostMapping("/add")
+//    public ResponseEntity<?> insertCourse(@Valid @RequestBody CourseInsertRequest request){
+//        try{
+//            Boolean isCreated = instructorCourseService.addCourse(request);
+//            String response = "success : " +isCreated;
+//            if(isCreated){
+//                log.info("<< Course inserted Sucessfully with title : " +request.getTitle() +" >>");
+//                return ResponseEntity.ok(response);
+//            }else{
+//                log.debug("<< Failed in inserting the course >>");
+//                return ResponseEntity.status(HttpConstants.FAILED).body(response);
+//            }
+//        }catch(Exception e){
+//            log.error("Error while inserting the course of title  : {}",request.getTitle(), e);
+//            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
+//        }
+//    }
 }
