@@ -71,3 +71,4 @@ A backend service for LMS of the Course Management System. This project is curre
 - change the project structure again removed utility and added shared for shared endpoints
 - completed discussion endpoint
 - added user endpoint in the admin controller package
+- added enpoint for discussion and reply like (Night code last commit of day)
