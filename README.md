@@ -72,3 +72,9 @@ A backend service for LMS of the Course Management System. This project is curre
 - completed discussion endpoint
 - added user endpoint in the admin controller package
 - added enpoint for discussion and reply like (Night code last commit of day)
+
+### 2025/12/23
+
+- added the endpoint for the edit course page 
+    - faced error or difficulty and have to clear some concept of map and Linked Hash Map since the data format was bit complicated
+- make the function to insert different things like user,course, modules in database
