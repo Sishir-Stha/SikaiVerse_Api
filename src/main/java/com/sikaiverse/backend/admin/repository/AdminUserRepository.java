@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AdminUserRepository extends JpaRepository<AdminUserInfoEntity,Integer> {
 
-    @Query(value = " SELECT * FROM public.get_all_users(); ",nativeQuery = true)
+    @Query(value = " SELECT * FROM public.get_admin_all_users(); ",nativeQuery = true)
     List<AdminUserInfoEntity> getUserInfo();
 
 }

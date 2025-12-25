@@ -13,7 +13,7 @@ public interface InstructorCourseRepository extends JpaRepository<InstructorCour
     List<InstructorCourseInfoEntity> getCourseInfo(@Param("userId") int userId );
 
 
-    @Query(value = "SELECT insert_course(:title, :description, :instructorId, :category, :level, :duration, :image, CAST(:rating AS NUMERIC), :totalStudents)",nativeQuery = true)
+    @Query(value = "SELECT privileged_insert_course(:title, :description, :instructorId, :category, :level, :duration, :image, CAST(:rating AS NUMERIC), :totalStudents)",nativeQuery = true)
     Boolean insertCourse(
             @Param("title") String title,
             @Param("description") String description,

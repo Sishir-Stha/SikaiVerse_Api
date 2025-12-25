@@ -78,3 +78,7 @@ A backend service for LMS of the Course Management System. This project is curre
 - added the endpoint for the edit course page 
     - faced error or difficulty and have to clear some concept of map and Linked Hash Map since the data format was bit complicated
 - make the function to insert different things like user,course, modules in database
+
+### 2025/12/25
+
+- make change according to the database the procedure names are changed

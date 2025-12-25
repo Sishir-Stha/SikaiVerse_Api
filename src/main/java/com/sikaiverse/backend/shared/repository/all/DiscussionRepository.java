@@ -13,10 +13,10 @@ public interface DiscussionRepository extends JpaRepository<DiscussionEntity,Lon
     @Query(value = "SELECT * FROM public.get_course_discussions_with_authors( :courseId );",nativeQuery = true)
     List<DiscussionEntity> getDiscussionInfo(@Param("courseId") int courseId );
 
-    @Query(value = "SELECT public.increment_discussion_post_likes( :postId );",nativeQuery = true)
+    @Query(value = "SELECT public.all_increment_discussion_post_likes( :postId );",nativeQuery = true)
     Boolean likeDiscussionPost(@Param("postId") int postId );
 
-    @Query(value = "SELECT public.increment_discussion_reply_likes( :replyId ); ",nativeQuery = true)
+    @Query(value = "SELECT public.all_increment_discussion_reply_likes( :replyId ); ",nativeQuery = true)
     Boolean likeReplyPost(@Param("replyId") int replyId );
 
 }

@@ -47,8 +47,6 @@ public class StudentCourseController {
             log.error("Error occurred during loading data for user: {}", request.getUserId(), e);
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE,"Server Error "));
         }
-
-
     }
 
 }

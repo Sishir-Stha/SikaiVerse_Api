@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface EditCouseInfoRepository extends JpaRepository<EditCourseInfoEntity,Integer> {
 
-    @Query(value = "SELECT * FROM public.get_edit_course_info( :courseId );",nativeQuery = true)
+    @Query(value = "SELECT * FROM public.get_privileged_edit_course_info( :courseId );",nativeQuery = true)
     List<EditCourseInfoEntity> getEditCourseInfo(@Param("courseId") Integer courseId );
 }
