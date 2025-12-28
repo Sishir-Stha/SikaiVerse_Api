@@ -82,3 +82,7 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2025/12/25
 
 - make change according to the database the procedure names are changed
+
+### 2025/12/28
+
+- changed few names and added new endpoint in privileged to add the course 

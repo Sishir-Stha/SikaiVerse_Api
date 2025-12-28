@@ -16,32 +16,18 @@ public class InstructorCourseService {
     private final InstructorEntityToDto mapper;
 
     @Autowired
-    public InstructorCourseService(InstructorCourseRepository instructorCourseRepository, InstructorEntityToDto mapper){
+    public InstructorCourseService(InstructorCourseRepository instructorCourseRepository, InstructorEntityToDto mapper) {
         this.instructorCourseRepository = instructorCourseRepository;
         this.mapper = mapper;
     }
 
-    public List<InstructorCourseInfoData> getCourseInfo (InstructorIdRequest request){
+    public List<InstructorCourseInfoData> getCourseInfo(InstructorIdRequest request) {
         List<InstructorCourseInfoEntity> entity = instructorCourseRepository.getCourseInfo(request.getUserId());
-        if(entity != null && !entity.isEmpty()) {
+        if (entity != null && !entity.isEmpty()) {
             List<InstructorCourseInfoData> response = mapper.courseDataMapper(entity);
             return response;
-        }else {
+        } else {
             return null;
         }
     }
-//
-//    public Boolean addCourse(CourseInsertRequest req) {
-//        return instructorCourseRepository.insertCourse(
-//                req.getTitle(),
-//                req.getDescription(),
-//                req.getInstructorId(),
-//                req.getCategory(),
-//                req.getLevel().toLowerCase(),
-//                req.getDuration(),
-//                req.getImage(),
-//                req.getRating(),
-//                req.getTotalStudents()
-//        );
-//    }
 }
