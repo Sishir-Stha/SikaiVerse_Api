@@ -42,7 +42,7 @@ public AuthController(AuthService authService, DataMapper dataMapper){
             if (response != null){
                 log.info("<<Auth logging Request recieved>>");
                 String token = JwtTokenUtil.generateToken(response.getEmail());
-                LoginDataResponse data = dataMapper.responseMapper(token,response.getFullName(),response.getPassword());
+                LoginDataResponse data = dataMapper.responseMapper(response.getUserId(),token,response.getFullName(),response.getRole());
                 return ResponseEntity.ok(new LoginResponse(StatusConstants.SUCCESS, data));
             }else{
                 log.debug("User is null ( Invalid user or credentials )");
