@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 public class AdminUserInfoEntity {
 
-    @Id
+
     @Column(name = "fullname", nullable = false)
     private String fullName;
 
@@ -23,7 +23,7 @@ public class AdminUserInfoEntity {
 
     @Column(name = "status", nullable = false)
     private String status;
-
+    @Id
     @Column(name = "joined_date", nullable = false)
     private LocalDateTime joinedDate;
 

@@ -9,7 +9,7 @@ import lombok.Data;
 @Entity
 public class StudentDashboardInfoEntity {
 
-    @Id
+
     @Column(name = "total_courses")
     private int totalCourse;
 
@@ -21,7 +21,7 @@ public class StudentDashboardInfoEntity {
 
     @Column(name = "study_time")
     private int studyTime;
-
+    @Id
     @Column(name = "course_id")
     private int courseId;
 

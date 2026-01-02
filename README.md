@@ -82,3 +82,11 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2025/12/25
 
 - make change according to the database the procedure names are changed
+
+### 2025/12/28
+
+- changed few names and added new endpoint in privileged to add the course
+
+### 2025/12/330
+- changed few things like @Id in the entity class of admin and student dashboard for the error repetation
+- added userid in the auth response for student and instructor endpoint required in frontend 

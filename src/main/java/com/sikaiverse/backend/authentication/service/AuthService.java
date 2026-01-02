@@ -26,7 +26,7 @@ public class AuthService {
 
 
     public boolean insertuser(SignUpRequest request){
-            Boolean inserted = authRepository.insertuser(request.getFullName(),request.getEmail(), request.getPassword(), request.getRole());
+            Boolean inserted = authRepository.insertuser(request.getFullName(),request.getEmail(), request.getPassword(), request.getRole().toLowerCase());
             return inserted;
     }
 
