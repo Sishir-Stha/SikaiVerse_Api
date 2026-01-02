@@ -23,6 +23,9 @@ public class CourseListEntity {
     @Column(name = "instructor")
     private String instructor;
 
+    @Column(name = "category")
+    private String category;
+
     @Column(name = "level")
     private String level;
 

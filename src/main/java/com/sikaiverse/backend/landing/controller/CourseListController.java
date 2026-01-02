@@ -36,7 +36,7 @@ public class CourseListController {
         try {
             List<CourseDataResponse> data = courseListService.listFilteredCourse(request);
             if(data != null) {
-                log.info("<< Course Filtered List Fetched >>");
+                log.info("<< Course Filtered List Fetched >>:");
                 return ResponseEntity.ok(new CourseListResponse(StatusConstants.SUCCESS, data));
             }else{
                 log.debug("<< Error in fetching the Filtered Courses >>");

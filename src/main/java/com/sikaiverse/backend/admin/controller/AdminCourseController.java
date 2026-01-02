@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,13 +29,13 @@ public class AdminCourseController {
         this.adminCourseService = adminCourseService;
     }
 
-    @GetMapping("/getCourseInfo")
+    @PostMapping("/getCourseInfo")
     public ResponseEntity<?> getCourseInfo() {
         try {
             List<AdminCourseData> data = adminCourseService.getCourseInfo();
             if (data != null && !data.isEmpty()) {
                 AdminCourseResponse response = new AdminCourseResponse(StatusConstants.SUCCESS, data);
-                log.info(" << Course info is loaded for Admin >> " + response);
+                log.info(" << Course info is loaded for Admin >> ");
                 return ResponseEntity.ok(response);
             } else {
                 log.debug("<< Course info load failed for Admin >>");

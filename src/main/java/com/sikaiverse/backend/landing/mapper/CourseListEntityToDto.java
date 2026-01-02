@@ -19,6 +19,7 @@ public class CourseListEntityToDto {
             dto.setTitle(entity.getTitle());
             dto.setDescription(entity.getDescription());
             dto.setInstructor(entity.getInstructor());
+            dto.setCategory(entity.getCategory());
             dto.setLevel(entity.getLevel());
             dto.setDuration(entity.getDuration());
             dto.setTotalStudents(entity.getTotalStudents());
