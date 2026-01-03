@@ -94,3 +94,6 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2025/01/02
 - added the catgeory in the landing browse or course list entity and dto
 - making minor changes for debuging 
+
+### 2025/01/03
+- adding the profile section for the profile page of student, admin and instructor
