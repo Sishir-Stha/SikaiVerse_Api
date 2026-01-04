@@ -97,3 +97,6 @@ A backend service for LMS of the Course Management System. This project is curre
 
 ### 2025/01/03
 - adding the profile section for the profile page of student, admin and instructor
+
+### 2025/01/04
+- adding the update profile section in the shared/all and admin/user 

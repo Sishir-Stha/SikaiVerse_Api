@@ -4,6 +4,7 @@ import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
+import com.sikaiverse.backend.shared.dto.request.all.AllUpdateUserRequest;
 import com.sikaiverse.backend.shared.dto.request.all.UserIdRequest;
 import com.sikaiverse.backend.shared.dto.response.all.ProfileData;
 import com.sikaiverse.backend.shared.dto.response.all.ProfileDataResponse;
@@ -46,4 +47,20 @@ public class ProfileController {
         }
     }
 
+    @PostMapping("/updateProfileInfo")
+    public ResponseEntity<?> updateProfileInfo(@Valid @RequestBody AllUpdateUserRequest request){
+        try{
+            boolean data = profileService.updateProfileData(request);
+            if(data) {
+                log.info("  << Updating Profile Info for userId : " + request.getUserId()+ " >>");
+                String response = "success: " + data;
+                return ResponseEntity.ok(response);
+            }log.debug(" << Upadating Profile Info failed for userId : >>" + request.getUserId());
+            return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Error while updating the profile Info"));
+        }catch(Exception e){
+        log.error("<< Error while updating the profile info>>");
+        return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE,"Internal Error while updating the profile Info"));
+    }
+
+    }
 }

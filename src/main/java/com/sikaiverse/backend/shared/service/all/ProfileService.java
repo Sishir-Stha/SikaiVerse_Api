@@ -1,5 +1,6 @@
 package com.sikaiverse.backend.shared.service.all;
 
+import com.sikaiverse.backend.shared.dto.request.all.AllUpdateUserRequest;
 import com.sikaiverse.backend.shared.dto.request.all.UserIdRequest;
 import com.sikaiverse.backend.shared.dto.response.all.ProfileData;
 import com.sikaiverse.backend.shared.entity.all.ProfileEntity;
@@ -23,10 +24,12 @@ public class ProfileService {
 
         ProfileEntity entity = profileRepository.getUserProfile(request.getUserId());
         if( entity != null){
-            ProfileData response = mapper.profileMapper(entity);
-            return response;
+            return mapper.profileMapper(entity);
         }else{
             return null;
         }
+    }
+    public boolean updateProfileData(AllUpdateUserRequest request){
+        return profileRepository.updateUserProfile(request.getUserId(), request.getFullName(), request.getEmail(),request.getRole(), request.getStatus(), request.getPhoneNumber(), request.getAddress());
     }
 }
