@@ -6,7 +6,7 @@ import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.instructor.dto.request.InstructorIdRequest;
 import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoData;
-import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseResponse;
+import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoResponse;
 import com.sikaiverse.backend.instructor.service.InstructorCourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class InstructorCourseController {
             List<InstructorCourseInfoData> data = instructorCourseService.getCourseInfo(request);
             if (data != null && !data.isEmpty()) {
                 log.info(" << Course info is loaded for InstructorId : " + request.getUserId() + " >> ");
-                return ResponseEntity.ok(new InstructorCourseResponse(StatusConstants.SUCCESS, data));
+                return ResponseEntity.ok(new InstructorCourseInfoResponse(StatusConstants.SUCCESS, data));
             } else {
                 log.debug("<< Course info load failed for InstructorId : " + request.getUserId() + " >>");
                 return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Course Info load failed due to invalid user"));

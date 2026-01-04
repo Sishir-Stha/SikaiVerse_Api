@@ -3,6 +3,7 @@ package com.sikaiverse.backend.shared.controller.privileged;
 import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
+import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.CourseInsertRequest;
@@ -43,13 +44,12 @@ public class PrivilegedCourseController {
     public ResponseEntity<?> insertCourse(@Valid @RequestBody CourseInsertRequest request){
         try{
             Boolean isCreated = privilegedCourseService.addCourse(request);
-            String response = "success : " +isCreated;
             if(isCreated){
                 log.info("<< Course inserted Sucessfully with title : " +request.getTitle() +" >>");
-                return ResponseEntity.ok(response);
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
             }else{
                 log.debug("<< Failed in inserting the course >>");
-                return ResponseEntity.status(HttpConstants.FAILED).body(response);
+                return ResponseEntity.status(HttpConstants.FAILED).body("Failed in inserting the course");
             }
         }catch(Exception e){
             log.error("Error while inserting the course of title  : {}",request.getTitle(), e);

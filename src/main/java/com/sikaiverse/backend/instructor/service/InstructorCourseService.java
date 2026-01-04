@@ -3,6 +3,7 @@ package com.sikaiverse.backend.instructor.service;
 import com.sikaiverse.backend.instructor.dto.request.InstructorIdRequest;
 import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoData;
 import com.sikaiverse.backend.instructor.entity.InstructorCourseInfoEntity;
+import com.sikaiverse.backend.instructor.entity.InstructorCourseListEntity;
 import com.sikaiverse.backend.instructor.mapper.InstructorEntityToDto;
 import com.sikaiverse.backend.instructor.repository.InstructorCourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,13 @@ public class InstructorCourseService {
             return response;
         } else {
             return null;
+        }
+    }
+
+    public List<InstructorCourseListEntity> getCourseList(InstructorIdRequest request){
+        List<InstructorCourseListEntity> entity = instructorCourseRepository.getCourseList(request.getUserId());
+        if(entity != null && !entity.isEmpty()){
+
         }
     }
 }

@@ -7,6 +7,7 @@ import com.sikaiverse.backend.admin.service.AdminUserService;
 import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
+import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.shared.dto.request.all.AllUpdateUserRequest;
 import jakarta.validation.Valid;
@@ -53,8 +54,7 @@ public class AdminUserController {
             boolean data = adminUserService.updateProfileData(request);
             if (data) {
                 log.info("  << Updating Profile Info for userId : " + request.getUserId() + " >>");
-                String response = "success: " + data;
-                return ResponseEntity.ok(response);
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
             }
             log.debug(" << Upadating Profile Info failed for userId : >>" + request.getUserId());
             return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Error while updating the profile Info"));
