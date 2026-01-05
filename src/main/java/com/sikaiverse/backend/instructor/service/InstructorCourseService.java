@@ -2,6 +2,7 @@ package com.sikaiverse.backend.instructor.service;
 
 import com.sikaiverse.backend.instructor.dto.request.InstructorIdRequest;
 import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoData;
+import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseListData;
 import com.sikaiverse.backend.instructor.entity.InstructorCourseInfoEntity;
 import com.sikaiverse.backend.instructor.entity.InstructorCourseListEntity;
 import com.sikaiverse.backend.instructor.mapper.InstructorEntityToDto;
@@ -32,10 +33,13 @@ public class InstructorCourseService {
         }
     }
 
-    public List<InstructorCourseListEntity> getCourseList(InstructorIdRequest request){
+    public List<InstructorCourseListData> getCourseList(InstructorIdRequest request){
         List<InstructorCourseListEntity> entity = instructorCourseRepository.getCourseList(request.getUserId());
         if(entity != null && !entity.isEmpty()){
-
+            List<InstructorCourseListData> response = mapper.courseListDataMapper(entity);
+            return response;
+        }else{
+            return null ;
         }
     }
 }
