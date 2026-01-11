@@ -1,8 +1,10 @@
 package com.sikaiverse.backend.instructor.mapper;
 
 import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoData;
+import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseListData;
 import com.sikaiverse.backend.instructor.dto.response.dashboard.InstructorDashboardData;
 import com.sikaiverse.backend.instructor.entity.InstructorCourseInfoEntity;
+import com.sikaiverse.backend.instructor.entity.InstructorCourseListEntity;
 import com.sikaiverse.backend.instructor.entity.InstructorDashboardInfoEntity;
 import org.springframework.stereotype.Component;
 
@@ -34,6 +36,17 @@ public class InstructorEntityToDto {
             dto.setTotalLessons(entity.getTotalLesson());
             dto.setTotalDuration(entity.getTotalDuration());
             dto.setRating(entity.getRating());
+            response.add(dto);
+        }
+        return response;
+    }
+
+    public List<InstructorCourseListData> courseListDataMapper(List<InstructorCourseListEntity> entities){
+        List<InstructorCourseListData> response = new ArrayList<>();
+        for (InstructorCourseListEntity entity : entities){
+            InstructorCourseListData dto = new InstructorCourseListData();
+            dto.setCourseId(entity.getCourseId());
+            dto.setCourseTitle(entity.getCourseTitle());
             response.add(dto);
         }
         return response;

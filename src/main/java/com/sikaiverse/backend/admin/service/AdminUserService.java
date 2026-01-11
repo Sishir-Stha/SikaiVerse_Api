@@ -1,9 +1,11 @@
 package com.sikaiverse.backend.admin.service;
 
+import com.sikaiverse.backend.admin.dto.request.AdminUpdateUserRequest;
 import com.sikaiverse.backend.admin.dto.response.user.AdminUserData;
 import com.sikaiverse.backend.admin.entity.AdminUserInfoEntity;
 import com.sikaiverse.backend.admin.mapper.AdminEntityToDto;
 import com.sikaiverse.backend.admin.repository.AdminUserRepository;
+import com.sikaiverse.backend.shared.dto.request.all.AllUpdateUserRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,5 +31,7 @@ public class AdminUserService {
             return null;
         }
     }
-
+    public boolean updateProfileData(AdminUpdateUserRequest request){
+        return adminUserRepository.updateUserProfile(request.getUserId(), request.getFullName(), request.getEmail(),request.getRole(), request.getStatus(), request.getPhoneNumber(), request.getAddress());
+    }
 }

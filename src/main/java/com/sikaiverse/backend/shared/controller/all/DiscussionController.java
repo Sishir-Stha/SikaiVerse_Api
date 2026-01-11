@@ -3,6 +3,7 @@ package com.sikaiverse.backend.shared.controller.all;
 import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
+import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
 import com.sikaiverse.backend.shared.dto.request.all.PostIdRequest;
@@ -49,8 +50,7 @@ public class DiscussionController {
            boolean liked = discussionService.likeDiscussionPost(request);
            if (liked) {
                log.info(" << Discussion Liked request recieved " + request.getPostId() +" >> ");
-               String response = "success : " + liked;
-               return ResponseEntity.ok(response);
+               return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
            } else {
                log.debug(" << Discussion Liked request failed for "+ request.getPostId() +" >> ");
                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Error occured in DB"));
@@ -67,8 +67,7 @@ public class DiscussionController {
             boolean liked = discussionService.likeReplyPost(request);
             if (liked) {
                 log.info(" << Reply Liked request recieved " + request.getReplyId() +" >> ");
-                String response = "success : " + liked;
-                return ResponseEntity.ok(response);
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
             } else {
                 log.debug(" << Reply Liked request failed for "+ request.getReplyId() +" >> ");
                 return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Error occured in DB"));

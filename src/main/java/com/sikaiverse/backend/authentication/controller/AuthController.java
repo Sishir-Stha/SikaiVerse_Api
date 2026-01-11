@@ -11,6 +11,7 @@ import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.security.JwtTokenUtil;
+import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -61,8 +62,7 @@ public AuthController(AuthService authService, DataMapper dataMapper){
             boolean created = authService.insertuser(request);
             if (created){
                 log.info("<< " +request.getRole()+" Created Sucessfully>>");
-                String response = "success : "+created;
-                return ResponseEntity.ok(response);
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
             }else{
                 log.debug("User is null ( Invalid user or credentials )");
                 return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE,"Failed to create user"));

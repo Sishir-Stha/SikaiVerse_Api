@@ -1,8 +1,10 @@
 package com.sikaiverse.backend.shared.mapper.all;
 
 import com.sikaiverse.backend.shared.dto.response.all.DiscussionDto;
+import com.sikaiverse.backend.shared.dto.response.all.ProfileData;
 import com.sikaiverse.backend.shared.dto.response.all.RepliesData;
 import com.sikaiverse.backend.shared.entity.all.DiscussionEntity;
+import com.sikaiverse.backend.shared.entity.all.ProfileEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -37,6 +39,16 @@ public class AllEntityToDto {
         response.setPostCreatedAt(firstEntity.getPostCreatedAt());
         response.setPostUpdatedAt(firstEntity.getPostUpdatedAt());
         response.setRepliesDataList(repliesDataList);
+        return response;
+    }
+
+    public ProfileData profileMapper(ProfileEntity entity){
+        ProfileData response = new ProfileData();
+        response.setFullName(entity.getFullName());
+        response.setEmail(entity.getEmail());
+        response.setAddress(entity.getAddress());
+        response.setRole(entity.getRole());
+        response.setPhoneNumber(entity.getPhoneNumber());
         return response;
     }
 

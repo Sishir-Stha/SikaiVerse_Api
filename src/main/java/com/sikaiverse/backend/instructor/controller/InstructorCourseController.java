@@ -6,15 +6,15 @@ import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.instructor.dto.request.InstructorIdRequest;
 import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoData;
-import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseResponse;
+import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoResponse;
+import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseListData;
+import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseListResponse;
 import com.sikaiverse.backend.instructor.service.InstructorCourseService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,13 +30,13 @@ public class InstructorCourseController {
         this.instructorCourseService = instructorCourseService;
     }
 
-    @GetMapping("/getCourseInfo")
+    @PostMapping("/getCourseInfo")
     public ResponseEntity<?> getCourseInfo(@RequestBody InstructorIdRequest request) {
         try {
             List<InstructorCourseInfoData> data = instructorCourseService.getCourseInfo(request);
             if (data != null && !data.isEmpty()) {
                 log.info(" << Course info is loaded for InstructorId : " + request.getUserId() + " >> ");
-                return ResponseEntity.ok(new InstructorCourseResponse(StatusConstants.SUCCESS, data));
+                return ResponseEntity.ok(new InstructorCourseInfoResponse(StatusConstants.SUCCESS, data));
             } else {
                 log.debug("<< Course info load failed for InstructorId : " + request.getUserId() + " >>");
                 return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Course Info load failed due to invalid user"));
@@ -45,6 +45,24 @@ public class InstructorCourseController {
             log.error("Error occurred during loading data for user: {}", request.getUserId(), e);
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error "));
         }
+    }
+
+    @PostMapping("/getCourseList")
+    public ResponseEntity<?> getCourseList(@Valid @RequestBody InstructorIdRequest request){
+        try {
+            List<InstructorCourseListData> data = instructorCourseService.getCourseList(request);
+            if(data != null && !data.isEmpty()){
+                log.info(" <<  Couse List info fetched for instructorId : "+ request.getUserId()+" >> ");
+                return ResponseEntity.ok(new InstructorCourseListResponse(StatusConstants.SUCCESS,data));
+            }else {
+                log.debug("<< Course info list load failed for InstructorId : " + request.getUserId() + " >>");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Course list Info load failed due to invalid user"));
+            }
+        } catch (Exception e) {
+            log.error("Error occurred during loading course list for instructor: {}", request.getUserId(), e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error "));
+        }
+
     }
 
 }

@@ -2,11 +2,14 @@ package com.sikaiverse.backend.admin.mapper;
 
 
 import com.sikaiverse.backend.admin.dto.response.course.AdminCourseData;
+import com.sikaiverse.backend.admin.dto.response.course.AdminCourseListData;
 import com.sikaiverse.backend.admin.dto.response.dashboard.AdminDashboardData;
 import com.sikaiverse.backend.admin.dto.response.user.AdminUserData;
 import com.sikaiverse.backend.admin.entity.AdminCourseInfoEntity;
+import com.sikaiverse.backend.admin.entity.AdminCourseListEntity;
 import com.sikaiverse.backend.admin.entity.AdminDashboardInfoEntity;
 import com.sikaiverse.backend.admin.entity.AdminUserInfoEntity;
+
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -56,4 +59,18 @@ public class AdminEntityToDto {
         }
         return responses;
     }
+
+
+    public List<AdminCourseListData> courseListDataMapper(List<AdminCourseListEntity> entities){
+        List<AdminCourseListData> response = new ArrayList<>();
+        for (AdminCourseListEntity entity : entities){
+            AdminCourseListData dto = new AdminCourseListData();
+            dto.setCourseId(entity.getCourseId());
+            dto.setCourseTitle(entity.getCourseTitle());
+            response.add(dto);
+        }
+        return response;
+    }
 }
+
+
