@@ -1,4 +1,4 @@
-package com.sikaiverse.backend.instructor.entity;
+package com.sikaiverse.backend.admin.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class InstructorCourseListEntity {
+public class AdminCourseListEntity {
 
     @Id
     @Column(name = "course_id")

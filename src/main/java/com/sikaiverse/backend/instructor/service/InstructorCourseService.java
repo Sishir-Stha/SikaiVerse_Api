@@ -7,11 +7,13 @@ import com.sikaiverse.backend.instructor.entity.InstructorCourseInfoEntity;
 import com.sikaiverse.backend.instructor.entity.InstructorCourseListEntity;
 import com.sikaiverse.backend.instructor.mapper.InstructorEntityToDto;
 import com.sikaiverse.backend.instructor.repository.InstructorCourseRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class InstructorCourseService {
     private final InstructorCourseRepository instructorCourseRepository;
@@ -35,6 +37,7 @@ public class InstructorCourseService {
 
     public List<InstructorCourseListData> getCourseList(InstructorIdRequest request){
         List<InstructorCourseListEntity> entity = instructorCourseRepository.getCourseList(request.getUserId());
+        //log.info("result"+entity);
         if(entity != null && !entity.isEmpty()){
             List<InstructorCourseListData> response = mapper.courseListDataMapper(entity);
             return response;

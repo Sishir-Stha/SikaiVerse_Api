@@ -7,7 +7,10 @@ import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.instructor.dto.request.InstructorIdRequest;
 import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoData;
 import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseInfoResponse;
+import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseListData;
+import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseListResponse;
 import com.sikaiverse.backend.instructor.service.InstructorCourseService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +45,24 @@ public class InstructorCourseController {
             log.error("Error occurred during loading data for user: {}", request.getUserId(), e);
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error "));
         }
+    }
+
+    @PostMapping("/getCourseList")
+    public ResponseEntity<?> getCourseList(@Valid @RequestBody InstructorIdRequest request){
+        try {
+            List<InstructorCourseListData> data = instructorCourseService.getCourseList(request);
+            if(data != null && !data.isEmpty()){
+                log.info(" <<  Couse List info fetched for instructorId : "+ request.getUserId()+" >> ");
+                return ResponseEntity.ok(new InstructorCourseListResponse(StatusConstants.SUCCESS,data));
+            }else {
+                log.debug("<< Course info list load failed for InstructorId : " + request.getUserId() + " >>");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Course list Info load failed due to invalid user"));
+            }
+        } catch (Exception e) {
+            log.error("Error occurred during loading course list for instructor: {}", request.getUserId(), e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error "));
+        }
+
     }
 
 }
