@@ -5,43 +5,59 @@ import com.sikaiverse.backend.shared.dto.response.all.ProfileData;
 import com.sikaiverse.backend.shared.dto.response.all.RepliesData;
 import com.sikaiverse.backend.shared.entity.all.DiscussionEntity;
 import com.sikaiverse.backend.shared.entity.all.ProfileEntity;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
+@RequiredArgsConstructor
 @Component
 public class AllEntityToDto {
-    public DiscussionDto discussionMapper(List<DiscussionEntity> entities) {
-        DiscussionEntity firstEntity = entities.getFirst();
-        List<RepliesData> repliesDataList = new ArrayList<>();
 
+    private final ObjectMapper mapper;
+
+    public List<DiscussionDto> discussionMapper(List<DiscussionEntity> entities) {
+        String jsonReplies;
+        List<DiscussionDto> results = new ArrayList<>();
         for (DiscussionEntity entity : entities) {
-            RepliesData replyDto = new RepliesData();
-            replyDto.setReplyId(entity.getReplyId());
-            replyDto.setReplyUserId(entity.getReplyUserId());
-            replyDto.setReplyUserFullname(entity.getReplyUserFullname());
-            replyDto.setReplyUserRole(entity.getReplyUserRole());
-            replyDto.setReplyContent(entity.getReplyContent());
-            replyDto.setReplyLikes(entity.getReplyLikes());
-            replyDto.setReplyCreatedAt(entity.getReplyCreatedAt());
-            replyDto.setReplyUpdatedAt(entity.getReplyUpdatedAt());
-            repliesDataList.add(replyDto);
+            DiscussionDto response = new DiscussionDto();
+            response.setPostId(entity.getPostId());
+            response.setPostTitle(entity.getPostTitle());
+            response.setPostContent(entity.getPostContent());
+            response.setPostUserId(entity.getPostUserId());
+            response.setPostUserFullname(entity.getPostUserFullname());
+            response.setPostUserRole(entity.getPostUserRole());
+            response.setPostLikes(entity.getPostLikes());
+            response.setPostCreatedAt(entity.getPostCreatedAt());
+            response.setPostUpdatedAt(entity.getPostUpdatedAt());
+            jsonReplies = entity.getReplies();
+            List<RepliesData> replies = parseReplies(jsonReplies);
+            response.setRepliesDataList(replies);
+            results.add(response);
         }
-        DiscussionDto response = new DiscussionDto();
-        response.setPostId(firstEntity.getPostId());
-        response.setPostTitle(firstEntity.getPostTitle());
-        response.setPostContent(firstEntity.getPostContent());
-        response.setPostUserId(firstEntity.getPostUserId());
-        response.setPostUserFullname(firstEntity.getPostUserFullname());
-        response.setPostUserRole(firstEntity.getPostUserRole());
-        response.setPostLikes(firstEntity.getPostLikes());
-        response.setPostCreatedAt(firstEntity.getPostCreatedAt());
-        response.setPostUpdatedAt(firstEntity.getPostUpdatedAt());
-        response.setRepliesDataList(repliesDataList);
-        return response;
+        return results;
     }
 
+    public List<RepliesData> parseReplies(String jsonReplies){
+        if(jsonReplies == null || jsonReplies.isBlank() || jsonReplies.equals("[]")) {
+            log.debug("no replies for this post ! ");
+            return new ArrayList<>();
+        }else{
+            List<RepliesData> replies = mapper.readValue(
+                    jsonReplies,
+                    new TypeReference<List<RepliesData>>() {
+                    }
+            );
+            log.info("Json is parsed ! ");
+            return replies;
+        }
+    }
     public ProfileData profileMapper(ProfileEntity entity){
         ProfileData response = new ProfileData();
         response.setFullName(entity.getFullName());
