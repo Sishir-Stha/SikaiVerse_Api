@@ -34,7 +34,7 @@ public class DiscussionController {
 
             List<DiscussionDto> response = discussionService.getDiscussion(request);
             if(response != null){
-                log.info(" << Discussion list retrived request recieved for "+ request.getCourseId() +" >> ");
+                log.info(" << Discussion list retrived request recieved for "+ request.getCourseId() +" >> "+response);
                 return ResponseEntity.ok(new DiscussionResponse(StatusConstants.SUCCESS,response));
             }else {
                 log.debug(" << Discussion list retrived failed for "+ request.getCourseId() +" >> ");

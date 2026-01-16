@@ -29,6 +29,7 @@ public class DiscussionService {
     public List<DiscussionDto> getDiscussion(CourseIdRequest request){
 
         List<DiscussionEntity> entities = discussionRepository.getDiscussionInfo(request.getCourseId());
+        log.info("jghc"+entities);
         if(entities != null || !entities.isEmpty()){
             List<DiscussionDto> response = mapper.discussionMapper(entities);
             return response;

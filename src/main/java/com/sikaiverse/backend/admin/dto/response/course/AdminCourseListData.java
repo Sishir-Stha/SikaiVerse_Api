@@ -7,4 +7,5 @@ public class AdminCourseListData {
 
     private int courseId;
     private String courseTitle;
+    private int noOfLessons;
 }

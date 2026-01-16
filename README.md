@@ -111,7 +111,9 @@ A backend service for LMS of the Course Management System. This project is curre
 - added the get discussion post and replies for any course id in shared/all
 
 ### 2025/01/16
--added the endpoint for the course details page for the student 
+- added the endpoint for the course details page for the student 
+- added new feilds i.e no of lesson in the admin and instructor disussion list and few other changes
+
 
 
 
