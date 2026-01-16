@@ -14,7 +14,10 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -34,7 +37,7 @@ public class InstructorCourseController {
     public ResponseEntity<?> getCourseInfo(@RequestBody InstructorIdRequest request) {
         try {
             List<InstructorCourseInfoData> data = instructorCourseService.getCourseInfo(request);
-            if (data != null && !data.isEmpty()) {
+            if (data != null || !data.isEmpty()) {
                 log.info(" << Course info is loaded for InstructorId : " + request.getUserId() + " >> ");
                 return ResponseEntity.ok(new InstructorCourseInfoResponse(StatusConstants.SUCCESS, data));
             } else {
@@ -51,7 +54,7 @@ public class InstructorCourseController {
     public ResponseEntity<?> getCourseList(@Valid @RequestBody InstructorIdRequest request){
         try {
             List<InstructorCourseListData> data = instructorCourseService.getCourseList(request);
-            if(data != null && !data.isEmpty()){
+            if(data != null || !data.isEmpty()){
                 log.info(" <<  Couse List info fetched for instructorId : "+ request.getUserId()+" >> ");
                 return ResponseEntity.ok(new InstructorCourseListResponse(StatusConstants.SUCCESS,data));
             }else {

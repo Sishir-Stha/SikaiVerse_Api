@@ -9,7 +9,6 @@ import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
-import com.sikaiverse.backend.shared.dto.request.all.AllUpdateUserRequest;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class AdminUserController {
     public ResponseEntity<?> getAllUser(){
     try {
         List<AdminUserData> data = adminUserService.getUserInfo();
-        if (data != null && !data.isEmpty()) {
+        if (data != null || !data.isEmpty()) {
             log.info(" << User List retrive request recieved >> ");
             return ResponseEntity.ok(new AdminUserResponse(StatusConstants.SUCCESS, data));
 

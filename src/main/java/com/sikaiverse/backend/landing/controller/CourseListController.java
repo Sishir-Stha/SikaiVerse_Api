@@ -21,7 +21,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping(ApiConstants.COURSE_LIST_BASE)
+@RequestMapping(ApiConstants.COURSE_BASE)
 public class CourseListController {
 
     private final CourseListService courseListService;

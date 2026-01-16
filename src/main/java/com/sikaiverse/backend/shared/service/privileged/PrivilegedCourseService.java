@@ -27,7 +27,7 @@ public class PrivilegedCourseService {
 
         List<EditCourseInfoEntity> entities = privilegedCourseRepository.getEditCourseInfo(request.getCourseId());
         log.info("Entity : " + entities);
-        if(entities != null && !entities.isEmpty()){
+        if(entities != null || !entities.isEmpty()){
             CourseData response = mapper.editCourseMapper(entities);
             log.info("Mapped :  "+response);
             return response;

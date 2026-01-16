@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface StudentDashboardRespository extends JpaRepository<StudentDashboardInfoEntity,Integer> {
+public interface StudentDashboardRepository extends JpaRepository<StudentDashboardInfoEntity,Integer> {
 
     @Query(value = " select * from get_student_dashboard_info( :userId ); ",nativeQuery = true)
     List<StudentDashboardInfoEntity> getDashboardInfo(@Param("userId") int userId );

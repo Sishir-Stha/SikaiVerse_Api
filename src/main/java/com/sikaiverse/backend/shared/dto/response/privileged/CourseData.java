@@ -1,8 +1,6 @@
 package com.sikaiverse.backend.shared.dto.response.privileged;
 
-import jakarta.persistence.Column;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
