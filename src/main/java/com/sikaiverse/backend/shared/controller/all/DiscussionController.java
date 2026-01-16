@@ -28,7 +28,7 @@ public class DiscussionController {
         this.discussionService = discussionService;
     }
 
-    @GetMapping("/getDiscussion")
+    @PostMapping("/getDiscussion")
     public ResponseEntity<?> getDiscussion(@RequestBody CourseIdRequest request){
         try{
 
