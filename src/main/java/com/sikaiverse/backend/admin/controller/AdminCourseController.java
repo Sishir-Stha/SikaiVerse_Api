@@ -4,22 +4,19 @@ import com.sikaiverse.backend.admin.dto.response.course.AdminCourseData;
 import com.sikaiverse.backend.admin.dto.response.course.AdminCourseListData;
 import com.sikaiverse.backend.admin.dto.response.course.AdminCourseListResponse;
 import com.sikaiverse.backend.admin.dto.response.course.AdminCourseResponse;
-import com.sikaiverse.backend.admin.entity.AdminCourseListEntity;
 import com.sikaiverse.backend.admin.service.AdminCourseService;
 import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
-import com.sikaiverse.backend.instructor.dto.request.InstructorIdRequest;
-import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseListData;
-import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseListResponse;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -38,7 +35,7 @@ public class AdminCourseController {
     public ResponseEntity<?> getCourseInfo() {
         try {
             List<AdminCourseData> data = adminCourseService.getCourseInfo();
-            if (data != null && !data.isEmpty()) {
+            if (data != null || !data.isEmpty()) {
                 AdminCourseResponse response = new AdminCourseResponse(StatusConstants.SUCCESS, data);
                 log.info(" << Course info is loaded for Admin >> ");
                 return ResponseEntity.ok(response);
@@ -56,7 +53,7 @@ public class AdminCourseController {
     public ResponseEntity<?> getCourseList() {
         try {
             List<AdminCourseListData> data = adminCourseService.getCourseList();
-            if (data != null && !data.isEmpty()) {
+            if (data != null || !data.isEmpty()) {
                 log.info(" <<  Couse List info fetched for adminId  >> ");
                 return ResponseEntity.ok(new AdminCourseListResponse(StatusConstants.SUCCESS, data));
             } else {

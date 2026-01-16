@@ -1,6 +1,5 @@
 package com.sikaiverse.backend.instructor.dto.response.course;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data

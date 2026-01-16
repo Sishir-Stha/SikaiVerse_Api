@@ -6,10 +6,7 @@ import com.sikaiverse.backend.admin.dto.response.course.AdminCourseListData;
 import com.sikaiverse.backend.admin.entity.AdminCourseInfoEntity;
 import com.sikaiverse.backend.admin.entity.AdminCourseListEntity;
 import com.sikaiverse.backend.admin.mapper.AdminEntityToDto;
-import com.sikaiverse.backend.admin.repository.AdminCourseRespository;
-import com.sikaiverse.backend.instructor.dto.request.InstructorIdRequest;
-import com.sikaiverse.backend.instructor.dto.response.course.InstructorCourseListData;
-import com.sikaiverse.backend.instructor.entity.InstructorCourseListEntity;
+import com.sikaiverse.backend.admin.repository.AdminCourseRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,18 +17,18 @@ import java.util.List;
 @Service
 public class AdminCourseService {
 
-    private final AdminCourseRespository adminCourseRespository;
+    private final AdminCourseRepository adminCourseRepository;
     private final AdminEntityToDto mapper;
 
     @Autowired
-    public AdminCourseService(AdminCourseRespository adminCourseRepository, AdminEntityToDto mapper){
-        this.adminCourseRespository = adminCourseRepository;
+    public AdminCourseService(AdminCourseRepository adminCourseRepository, AdminEntityToDto mapper){
+        this.adminCourseRepository = adminCourseRepository;
         this.mapper = mapper;
     }
 
     public List<AdminCourseData> getCourseInfo (){
-        List<AdminCourseInfoEntity> entity = adminCourseRespository.getCourseInfo();
-        if(entity != null && !entity.isEmpty()) {
+        List<AdminCourseInfoEntity> entity = adminCourseRepository.getCourseInfo();
+        if(entity != null || !entity.isEmpty()) {
             List<AdminCourseData> response = mapper.courseDataMapper(entity);
             return response;
         }else {
@@ -39,9 +36,9 @@ public class AdminCourseService {
         }
     }
     public List<AdminCourseListData> getCourseList(){
-        List<AdminCourseListEntity> entity = adminCourseRespository.getCourseList();
+        List<AdminCourseListEntity> entity = adminCourseRepository.getCourseList();
         //log.info("result"+entity);
-        if(entity != null && !entity.isEmpty()){
+        if(entity != null || !entity.isEmpty()){
             List<AdminCourseListData> response = mapper.courseListDataMapper(entity);
             return response;
         }else{

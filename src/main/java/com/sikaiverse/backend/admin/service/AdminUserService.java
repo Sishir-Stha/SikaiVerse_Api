@@ -5,7 +5,6 @@ import com.sikaiverse.backend.admin.dto.response.user.AdminUserData;
 import com.sikaiverse.backend.admin.entity.AdminUserInfoEntity;
 import com.sikaiverse.backend.admin.mapper.AdminEntityToDto;
 import com.sikaiverse.backend.admin.repository.AdminUserRepository;
-import com.sikaiverse.backend.shared.dto.request.all.AllUpdateUserRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

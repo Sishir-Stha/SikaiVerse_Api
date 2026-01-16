@@ -5,7 +5,6 @@ import com.sikaiverse.backend.shared.dto.response.all.ProfileData;
 import com.sikaiverse.backend.shared.dto.response.all.RepliesData;
 import com.sikaiverse.backend.shared.entity.all.DiscussionEntity;
 import com.sikaiverse.backend.shared.entity.all.ProfileEntity;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

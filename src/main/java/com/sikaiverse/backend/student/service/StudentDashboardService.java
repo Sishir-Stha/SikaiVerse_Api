@@ -4,7 +4,7 @@ import com.sikaiverse.backend.student.dto.request.StudentIdRequest;
 import com.sikaiverse.backend.student.dto.response.dashboard.StudentDashboardInfoData;
 import com.sikaiverse.backend.student.entity.StudentDashboardInfoEntity;
 import com.sikaiverse.backend.student.mapper.StudentEntityToDto;
-import com.sikaiverse.backend.student.repository.StudentDashboardRespository;
+import com.sikaiverse.backend.student.repository.StudentDashboardRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +15,18 @@ import java.util.List;
 @Service
 public class StudentDashboardService {
 
-    private final StudentDashboardRespository studentDashboardRespository;
+    private final StudentDashboardRepository studentDashboardRepository;
     private final StudentEntityToDto mapper;
 
     @Autowired
-    public StudentDashboardService(StudentDashboardRespository studentDashboardRespository, StudentEntityToDto mapper){
-        this.studentDashboardRespository = studentDashboardRespository;
+    public StudentDashboardService(StudentDashboardRepository studentDashboardRepository, StudentEntityToDto mapper){
+        this.studentDashboardRepository = studentDashboardRepository;
         this.mapper = mapper;
     }
 
     public StudentDashboardInfoData getInfoDashboard(StudentIdRequest request){
 
-        List<StudentDashboardInfoEntity> entity = studentDashboardRespository.getDashboardInfo(request.getUserId());
+        List<StudentDashboardInfoEntity> entity = studentDashboardRepository.getDashboardInfo(request.getUserId());
         log.info("before :" + entity);
         if(entity != null && !entity.isEmpty()) {
             StudentDashboardInfoData response = mapper.dashboardMapper(entity);
