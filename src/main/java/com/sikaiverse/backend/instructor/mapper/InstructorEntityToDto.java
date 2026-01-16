@@ -47,6 +47,7 @@ public class InstructorEntityToDto {
             InstructorCourseListData dto = new InstructorCourseListData();
             dto.setCourseId(entity.getCourseId());
             dto.setCourseTitle(entity.getCourseTitle());
+            dto.setNoOfLessons(entity.getNoOfLessons());
             response.add(dto);
         }
         return response;

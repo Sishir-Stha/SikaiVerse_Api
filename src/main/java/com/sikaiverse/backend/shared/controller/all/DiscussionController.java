@@ -28,13 +28,13 @@ public class DiscussionController {
         this.discussionService = discussionService;
     }
 
-    @GetMapping("/getDiscussion")
+    @PostMapping("/getDiscussion")
     public ResponseEntity<?> getDiscussion(@RequestBody CourseIdRequest request){
         try{
 
             List<DiscussionDto> response = discussionService.getDiscussion(request);
             if(response != null){
-                log.info(" << Discussion list retrived request recieved for "+ request.getCourseId() +" >> ");
+                log.info(" << Discussion list retrived request recieved for "+ request.getCourseId() +" >> "+response);
                 return ResponseEntity.ok(new DiscussionResponse(StatusConstants.SUCCESS,response));
             }else {
                 log.debug(" << Discussion list retrived failed for "+ request.getCourseId() +" >> ");
