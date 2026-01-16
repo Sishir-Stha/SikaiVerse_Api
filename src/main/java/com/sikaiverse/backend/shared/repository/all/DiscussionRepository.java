@@ -10,7 +10,7 @@ import java.util.List;
 public interface DiscussionRepository extends JpaRepository<DiscussionEntity,Long> {
 
 
-    @Query(value = "SELECT * FROM public.get_course_discussions_with_authors( :courseId );",nativeQuery = true)
+    @Query(value = "SELECT * FROM public.get_all_course_discussions( :courseId );",nativeQuery = true)
     List<DiscussionEntity> getDiscussionInfo(@Param("courseId") int courseId );
 
     @Query(value = "SELECT public.all_increment_discussion_post_likes( :postId );",nativeQuery = true)

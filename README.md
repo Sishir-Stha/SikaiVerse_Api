@@ -107,3 +107,7 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2025/01/10
 - added the admin course list data for the course list in the discussion tab of the admin which displays all the course 
 
+### 2025/01/14
+- added the get discussion post and replies for any course id in shared/all
+
+

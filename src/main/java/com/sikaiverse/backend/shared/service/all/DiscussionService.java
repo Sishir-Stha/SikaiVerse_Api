@@ -26,11 +26,11 @@ public class DiscussionService {
         this.mapper = mapper;
     }
 
-    public DiscussionDto getDiscussion(CourseIdRequest request){
+    public List<DiscussionDto> getDiscussion(CourseIdRequest request){
 
         List<DiscussionEntity> entities = discussionRepository.getDiscussionInfo(request.getCourseId());
         if(entities != null && !entities.isEmpty()){
-            DiscussionDto response = mapper.discussionMapper(entities);
+            List<DiscussionDto> response = mapper.discussionMapper(entities);
             return response;
         }else{
             return null;

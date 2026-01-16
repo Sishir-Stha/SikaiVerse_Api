@@ -40,28 +40,8 @@ public class DiscussionEntity {
     @Column(name = "post_updated_at")
     private LocalDateTime postUpdatedAt;
 
-    // -------- REPLY --------
-    @Column(name = "reply_id")
-    private Long replyId;
+    @Column(name = "replies")
+    private String replies;
 
-    @Column(name = "reply_user_id")
-    private Long replyUserId;
 
-    @Column(name = "reply_user_fullname")
-    private String replyUserFullname;
-
-    @Column(name = "reply_user_role")
-    private String replyUserRole;
-
-    @Column(name = "reply_content")
-    private String replyContent;
-
-    @Column(name = "reply_likes")
-    private Integer replyLikes;
-
-    @Column(name = "reply_created_at")
-    private LocalDateTime replyCreatedAt;
-
-    @Column(name = "reply_updated_at")
-    private LocalDateTime replyUpdatedAt;
 }
