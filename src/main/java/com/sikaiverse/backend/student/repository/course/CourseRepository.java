@@ -1,5 +1,6 @@
 package com.sikaiverse.backend.student.repository.course;
 
+import com.sikaiverse.backend.student.entity.course.LessonEntity;
 import com.sikaiverse.backend.student.entity.course.SideBarEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,4 +13,6 @@ public interface CourseRepository extends JpaRepository<SideBarEntity,String> {
     @Query(value = "SELECT * FROM get_course_page_sidebar(:courseId);",nativeQuery = true)
     SideBarEntity getSideBar (@Param("courseId") int courseId);
 
+    @Query(value = "SELECT * FROM enrolled_lesson_details(:lessonId);",nativeQuery = true)
+    LessonEntity getLessonDetails(@Param("lessonId") int lessonId);
 }

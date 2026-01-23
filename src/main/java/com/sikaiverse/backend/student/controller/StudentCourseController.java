@@ -48,7 +48,7 @@ public class StudentCourseController {
         }
     }
 
-    @GetMapping("/getCourseDetails")
+    @GetMapping("/getEnrolledDetails")
     public ResponseEntity<?> getCourseDetails(@RequestBody CourseIdRequest request) {
         try {
             StudentEnrolledCourseData data = studentCourseService.getEnrolledCourseInfo(request);
