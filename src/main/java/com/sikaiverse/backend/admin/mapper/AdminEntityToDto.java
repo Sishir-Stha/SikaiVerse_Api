@@ -66,6 +66,7 @@ public class AdminEntityToDto {
             AdminCourseListData dto = new AdminCourseListData();
             dto.setCourseId(entity.getCourseId());
             dto.setCourseTitle(entity.getCourseTitle());
+            dto.setNoOfLessons(entity.getNoOfLessons());
             response.add(dto);
         }
         return response;

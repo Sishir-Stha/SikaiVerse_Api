@@ -49,7 +49,7 @@ public class AdminCourseController {
         }
     }
 
-    @GetMapping("/getCourseList")
+    @PostMapping("/getCourseList")
     public ResponseEntity<?> getCourseList() {
         try {
             List<AdminCourseListData> data = adminCourseService.getCourseList();

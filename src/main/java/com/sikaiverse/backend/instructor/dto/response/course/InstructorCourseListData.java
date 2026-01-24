@@ -7,4 +7,5 @@ public class InstructorCourseListData {
 
     private int courseId;
     private String courseTitle;
+    private int noOfLessons;
 }

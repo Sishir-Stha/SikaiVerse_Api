@@ -44,4 +44,5 @@ public class CourseController {
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE,"Internal Server Error while fetching the side bar"));
         }
     }
+
 }

@@ -15,4 +15,7 @@ public class InstructorCourseListEntity {
 
     @Column(name = "course_title")
     private String courseTitle;
+
+    @Column(name = "no_of_lessons")
+    private int noOfLessons;
 }
