@@ -114,6 +114,8 @@ A backend service for LMS of the Course Management System. This project is curre
 - added the endpoint for the course details page for the student 
 - added new feilds i.e no of lesson in the admin and instructor discussion list and few other changes
 
-
+### 2025/01/23
+- added the endpoint for side panel for the lesson details page for the student 
+- added the function in the database for it 
 
 
