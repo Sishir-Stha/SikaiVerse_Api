@@ -118,4 +118,8 @@ A backend service for LMS of the Course Management System. This project is curre
 - added the endpoint for side panel for the lesson details page for the student 
 - added the function in the database for it 
 
+### 2025/01/26
+- added the endpoint for the lesson details page for the student
+- added and altered the tables for this endpoint in database
+
 
