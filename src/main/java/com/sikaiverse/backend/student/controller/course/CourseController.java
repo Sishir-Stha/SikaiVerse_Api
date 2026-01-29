@@ -29,7 +29,7 @@ public class CourseController {
         this.service = service;
     }
 
-    @GetMapping("/getSideBar")
+    @PostMapping("/getSideBar")
     public ResponseEntity<?> getSideBar (@RequestBody CourseIdRequest request){
         try{
             List<SideBarData> data = service.getSideBar(request);

@@ -122,4 +122,7 @@ A backend service for LMS of the Course Management System. This project is curre
 - added the endpoint for the lesson details page for the student
 - added and altered the tables for this endpoint in database
 
+### 2025/01/29
+-- added the isenrolled enpoint for enrollment verification and added the function to the database
+
 

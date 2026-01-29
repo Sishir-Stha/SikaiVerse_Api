@@ -1,6 +1,7 @@
 package com.sikaiverse.backend.student.service;
 
 import com.sikaiverse.backend.student.dto.request.CourseIdRequest;
+import com.sikaiverse.backend.student.dto.request.IsEnrolledRequest;
 import com.sikaiverse.backend.student.dto.request.StudentIdRequest;
 import com.sikaiverse.backend.student.dto.response.course.StudentCourseInfoData;
 import com.sikaiverse.backend.student.dto.response.course.StudentEnrolledCourseData;
@@ -44,6 +45,10 @@ public class StudentCourseService {
         }else{
             return null;
         }
+    }
+
+    public boolean isEnrolled(IsEnrolledRequest request){
+        return studentCourseRepository.isEnrolled(request.getLessonId(), request.getUserId());
     }
 
 }

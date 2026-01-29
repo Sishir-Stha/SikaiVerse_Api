@@ -17,4 +17,9 @@ public interface StudentCourseRepository extends JpaRepository<StudentCourseInfo
 
     @Query(value = "SELECT * FROM get_enrolled_course_detail( :courseId );",nativeQuery = true)
     StudentEnrolledCourseInfoEntity getEnrolledCourseInfo(@Param("courseId") int courseId );
+
+    @Query(value = "SELECT get_enrolled_status(:userId, :lessonId);",nativeQuery = true)
+    boolean isEnrolled(@Param("lessonId") int lessonId,
+                       @Param("userId") int userId);
+
 }
