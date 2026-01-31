@@ -123,6 +123,6 @@ A backend service for LMS of the Course Management System. This project is curre
 - added and altered the tables for this endpoint in database
 
 ### 2025/01/29
--- added the isenrolled enpoint for enrollment verification and added the function to the database
+-- added the Lesson endpoint for enrollment verification and added the function to the database
 
 

@@ -5,11 +5,9 @@ import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.student.dto.request.CourseIdRequest;
+import com.sikaiverse.backend.student.dto.request.LearnLessonRequest;
 import com.sikaiverse.backend.student.dto.request.LessonIdRequest;
-import com.sikaiverse.backend.student.dto.response.course.EnrolledLessonData;
-import com.sikaiverse.backend.student.dto.response.course.EnrolledLessonResponse;
-import com.sikaiverse.backend.student.dto.response.course.SideBarData;
-import com.sikaiverse.backend.student.dto.response.course.SideBarResponse;
+import com.sikaiverse.backend.student.dto.response.course.*;
 import com.sikaiverse.backend.student.entity.course.LessonEntity;
 import com.sikaiverse.backend.student.service.course.CourseService;
 import lombok.extern.slf4j.Slf4j;
@@ -60,6 +58,40 @@ public class CourseController {
         }catch(Exception e){
             log.error("<<Error while fetching the Enrolled Course Details>>");
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE,"Internal Server Error while fetching the enrolled course details"));
+        }
+    }
+
+    @PostMapping("/setInProgress")
+    public ResponseEntity<?> isProgress (@RequestBody LearnLessonRequest request){
+        try{
+            boolean isEnrolled = service.setInprogress(request);
+            if(isEnrolled){
+                log.info(" Set Course InProgress ");
+                return ResponseEntity.ok(new LearnLessonResponse(StatusConstants.SUCCESS));
+            }else{
+                log.info(" Set Course InProgress Invalid from DB ");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE," Set Course InProgress Invalid from Db"));
+            }
+        }catch (Exception e) {
+            log.error("Error occurred during setting course inprogress ", e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error during setting course inprogress "));
+        }
+    }
+
+    @PostMapping("/setCompleted")
+    public ResponseEntity<?> isEnrolled(@RequestBody LearnLessonRequest request){
+        try{
+            boolean isEnrolled = service.setCompleted(request);
+            if(isEnrolled){
+                log.info(" Set Course Completed ");
+                return ResponseEntity.ok(new LearnLessonResponse(StatusConstants.SUCCESS));
+            }else{
+                log.info(" Set Course Completed Invalid from DB ");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE," Set Course Completed Invalid from Db"));
+            }
+        }catch (Exception e) {
+            log.error("Error occurred during setting course Completed ", e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error during setting course completed"));
         }
     }
 }
