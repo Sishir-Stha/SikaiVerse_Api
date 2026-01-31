@@ -10,9 +10,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CourseRepository extends JpaRepository<SideBarEntity,String> {
 
-    @Query(value = "SELECT * FROM get_course_page_sidebar(:courseId);",nativeQuery = true)
-    SideBarEntity getSideBar (@Param("courseId") int courseId);
+    @Query(value = "SELECT * FROM get_course_page_sidebar(:courseId);", nativeQuery = true)
+    SideBarEntity getSideBar(@Param("courseId") int courseId);
 
-    @Query(value = "SELECT * FROM enrolled_lesson_details(:lessonId);",nativeQuery = true)
+    @Query(value = "SELECT * FROM enrolled_lesson_details(:lessonId);", nativeQuery = true)
     LessonEntity getLessonDetails(@Param("lessonId") int lessonId);
+
+    @Query(value = "SELECT * FROM set_lesson_in_progress(:userId, :lessonId);", nativeQuery = true)
+    boolean setInProgress(@Param("lessonId") int lessonId,
+                          @Param("userId") int userId);
+
+    @Query(value = "SELECT set_lesson_completed(:userId, :lessonId);", nativeQuery = true)
+    boolean setCompleted(@Param("lessonId") int lessonId,
+                          @Param("userId") int userId);
 }

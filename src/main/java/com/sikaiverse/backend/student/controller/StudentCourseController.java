@@ -5,7 +5,7 @@ import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.student.dto.request.CourseIdRequest;
-import com.sikaiverse.backend.student.dto.request.IsEnrolledRequest;
+import com.sikaiverse.backend.student.dto.request.LearnLessonRequest;
 import com.sikaiverse.backend.student.dto.request.StudentIdRequest;
 import com.sikaiverse.backend.student.dto.response.course.*;
 import com.sikaiverse.backend.student.service.StudentCourseService;
@@ -65,12 +65,12 @@ public class StudentCourseController {
     }
 
     @PostMapping("/isEnrolled")
-    public ResponseEntity<?> isEnrolled (@RequestBody IsEnrolledRequest request){
+    public ResponseEntity<?> isEnrolled (@RequestBody LearnLessonRequest request){
         try{
           boolean isEnrolled = studentCourseService.isEnrolled(request);
             if(isEnrolled){
                 log.info(" Course Enrolled ");
-                return ResponseEntity.ok(new IsEnrolledResponse(StatusConstants.SUCCESS));
+                return ResponseEntity.ok(new LearnLessonResponse(StatusConstants.SUCCESS));
             }else{
                 log.info(" Course is not Enrolled or Invalid ");
                 return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE,"Not Enrolled or Invalid"));

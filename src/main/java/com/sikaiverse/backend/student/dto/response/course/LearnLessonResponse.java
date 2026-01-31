@@ -3,11 +3,11 @@ package com.sikaiverse.backend.student.dto.response.course;
 import lombok.Data;
 
 @Data
-public class IsEnrolledResponse {
+public class LearnLessonResponse {
 
     private String success;
 
-    public IsEnrolledResponse(String success){
+    public LearnLessonResponse(String success){
         this.success = success;
     }
 

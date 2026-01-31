@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class IsEnrolledRequest {
+public class LearnLessonRequest {
     @NotBlank(message = " Lesson Id is required ")
     private int lessonId;
 
