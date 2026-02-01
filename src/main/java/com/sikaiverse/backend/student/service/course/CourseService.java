@@ -1,7 +1,12 @@
 package com.sikaiverse.backend.student.service.course;
 
 import com.sikaiverse.backend.student.dto.request.CourseIdRequest;
+import com.sikaiverse.backend.student.dto.request.LearnLessonRequest;
+import com.sikaiverse.backend.student.dto.request.LessonIdRequest;
+import com.sikaiverse.backend.student.dto.response.course.EnrolledLessonData;
+import com.sikaiverse.backend.student.dto.response.course.LearnLessonResponse;
 import com.sikaiverse.backend.student.dto.response.course.SideBarData;
+import com.sikaiverse.backend.student.entity.course.LessonEntity;
 import com.sikaiverse.backend.student.entity.course.SideBarEntity;
 import com.sikaiverse.backend.student.mapper.CourseEntityToDto;
 import com.sikaiverse.backend.student.repository.course.CourseRepository;
@@ -33,5 +38,24 @@ public class CourseService {
         }else{
             return null;
         }
+    }
+
+    public EnrolledLessonData getLessonDetail(LessonIdRequest request){
+        LessonEntity entity = courseRepository.getLessonDetails(request.getLessonId());
+        if(entity != null ){
+            EnrolledLessonData data = mapper.lessonMapper(entity);
+            return data;
+        }else{
+            return null;
+        }
+    }
+
+    public boolean setInprogress (LearnLessonRequest request){
+       return courseRepository.setInProgress(request.getLessonId(),request.getUserId());
+    }
+
+
+    public boolean setCompleted (LearnLessonRequest request){
+        return courseRepository.setCompleted(request.getLessonId(),request.getUserId());
     }
 }
