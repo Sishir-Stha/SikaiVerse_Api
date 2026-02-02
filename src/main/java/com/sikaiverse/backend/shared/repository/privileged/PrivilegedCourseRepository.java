@@ -14,6 +14,13 @@ public interface PrivilegedCourseRepository extends JpaRepository<EditCourseInfo
     @Query(value = "SELECT * FROM public.get_privileged_edit_course_info( :courseId );",nativeQuery = true)
     List<EditCourseInfoEntity> getEditCourseInfo(@Param("courseId") Integer courseId );
 
+    @Query(value = "SELECT privileged_update_course_info(:courseId,:userId,:courseTitle,:description,:level,:category);",nativeQuery = true)
+    boolean updateCourseInfo(@Param("courseId") Integer courseId,
+                             @Param("userId") Integer userId,
+                             @Param("courseTitle") String courseTitle,
+                             @Param("description") String description,
+                             @Param("level") String level,
+                             @Param("category") String category);
 
 
     @Query(value = "SELECT privileged_insert_course(:title, :description, :instructorId, :category, :level, :duration, :image, CAST(:rating AS NUMERIC), :totalStudents)",nativeQuery = true)

@@ -125,4 +125,11 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2025/01/29
 -- added the Lesson endpoint for enrollment verification and added the function to the database
 
+### 2025/01/31
+-- added the set Inprogress and Set Completed for the lesson to change the status of the lesson once student completed it 
+
+### 2025/02/02
+-- added endpoint to edit the course info details only allowed to the instructors and admin
+
+
 

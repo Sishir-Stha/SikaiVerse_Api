@@ -7,12 +7,14 @@ import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.CourseInsertRequest;
+import com.sikaiverse.backend.shared.dto.request.privileged.UpdateCourseInfoRequest;
 import com.sikaiverse.backend.shared.dto.response.privileged.CourseData;
 import com.sikaiverse.backend.shared.service.privileged.PrivilegedCourseService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.object.UpdatableSqlQuery;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -28,7 +30,7 @@ public class PrivilegedCourseController {
     }
 
     @GetMapping("/getEditInfo")
-    public ResponseEntity<?> getEditCourseInfo(@RequestBody CourseIdRequest request){
+    public ResponseEntity<?> getEditCourseInfo(@Valid @RequestBody CourseIdRequest request){
     log.info("request recieved "+request.getCourseId());
         CourseData response = privilegedCourseService.getEditCourseInfo(request);
         if(response != null) {
@@ -40,7 +42,7 @@ public class PrivilegedCourseController {
     }
 
 
-    @PostMapping("/addCourse")
+    @PostMapping("/add/Course")
     public ResponseEntity<?> insertCourse(@Valid @RequestBody CourseInsertRequest request){
         try{
             Boolean isCreated = privilegedCourseService.addCourse(request);
@@ -56,4 +58,23 @@ public class PrivilegedCourseController {
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
         }
     }
+
+    @PostMapping("/update/CourseInfo")
+    public ResponseEntity<?> updateCourseInfo(@Valid @RequestBody UpdateCourseInfoRequest request){
+        try{
+            boolean isUpdated = privilegedCourseService.updateCourseInfo(request);
+            if(isUpdated){
+                log.info("<< Course updating Sucessfully " +request.getCourseId() +" >>");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            }else{
+                log.debug("<< Failed in updating the course >>");
+                return ResponseEntity.status(HttpConstants.FAILED).body("Failed in updating the course");
+            }
+        }catch(Exception e){
+            log.error("Error while updating the course Info : {}",request.getCourseId(), e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
+        }
+    }
+
 }
+

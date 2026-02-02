@@ -2,6 +2,7 @@ package com.sikaiverse.backend.shared.service.privileged;
 
 import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.CourseInsertRequest;
+import com.sikaiverse.backend.shared.dto.request.privileged.UpdateCourseInfoRequest;
 import com.sikaiverse.backend.shared.dto.response.privileged.CourseData;
 import com.sikaiverse.backend.shared.entity.privileged.EditCourseInfoEntity;
 import com.sikaiverse.backend.shared.mapper.privileged.PrivilegedEntityToDto;
@@ -24,19 +25,14 @@ public class PrivilegedCourseService {
     }
 
     public CourseData getEditCourseInfo(CourseIdRequest request){
-
         List<EditCourseInfoEntity> entities = privilegedCourseRepository.getEditCourseInfo(request.getCourseId());
-        log.info("Entity : " + entities);
         if(entities != null || !entities.isEmpty()){
             CourseData response = mapper.editCourseMapper(entities);
-            log.info("Mapped :  "+response);
             return response;
         }else{
             return null;
         }
     }
-
-
 
     public Boolean addCourse(CourseInsertRequest req) {
         return privilegedCourseRepository.insertCourse(
@@ -50,6 +46,10 @@ public class PrivilegedCourseService {
                 req.getRating(),
                 req.getTotalStudents()
         );
+    }
+
+    public boolean updateCourseInfo(UpdateCourseInfoRequest request){
+         return privilegedCourseRepository.updateCourseInfo( request.getCourseId(),request.getUserId(), request.getCourseTitle(),request.getDescription(), request.getLevel().toLowerCase(), request.getCategory());
     }
 }
 

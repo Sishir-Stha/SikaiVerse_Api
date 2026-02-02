@@ -3,6 +3,7 @@ package com.sikaiverse.backend.student.controller.course;
 import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
+import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.student.dto.request.CourseIdRequest;
 import com.sikaiverse.backend.student.dto.request.LearnLessonRequest;
@@ -67,7 +68,7 @@ public class CourseController {
             boolean isEnrolled = service.setInprogress(request);
             if(isEnrolled){
                 log.info(" Set Course InProgress ");
-                return ResponseEntity.ok(new LearnLessonResponse(StatusConstants.SUCCESS));
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
             }else{
                 log.info(" Set Course InProgress Invalid from DB ");
                 return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE," Set Course InProgress Invalid from Db"));
@@ -84,7 +85,7 @@ public class CourseController {
             boolean isEnrolled = service.setCompleted(request);
             if(isEnrolled){
                 log.info(" Set Course Completed ");
-                return ResponseEntity.ok(new LearnLessonResponse(StatusConstants.SUCCESS));
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
             }else{
                 log.info(" Set Course Completed Invalid from DB ");
                 return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE," Set Course Completed Invalid from Db"));
