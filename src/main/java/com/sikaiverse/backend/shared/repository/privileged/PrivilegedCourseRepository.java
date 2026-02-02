@@ -1,6 +1,7 @@
 package com.sikaiverse.backend.shared.repository.privileged;
 
 import com.sikaiverse.backend.shared.entity.privileged.EditCourseInfoEntity;
+import com.sikaiverse.backend.shared.entity.privileged.InstructorListEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -36,4 +37,6 @@ public interface PrivilegedCourseRepository extends JpaRepository<EditCourseInfo
             @Param("totalStudents") Integer totalStudents
     );
 
+    @Query(value = "SELECT * FROM get_instructor_list();",nativeQuery = true)
+    List<InstructorListEntity> getInstructorList();
 }

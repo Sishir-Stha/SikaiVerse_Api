@@ -1,9 +1,11 @@
 package com.sikaiverse.backend.shared.mapper.privileged;
 
 import com.sikaiverse.backend.shared.dto.response.privileged.CourseData;
+import com.sikaiverse.backend.shared.dto.response.privileged.InstructorListData;
 import com.sikaiverse.backend.shared.dto.response.privileged.LessonData;
 import com.sikaiverse.backend.shared.dto.response.privileged.ModuleData;
 import com.sikaiverse.backend.shared.entity.privileged.EditCourseInfoEntity;
+import com.sikaiverse.backend.shared.entity.privileged.InstructorListEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -61,6 +63,18 @@ public class PrivilegedEntityToDto {
         response.setLevel(firstEntity.getLevel());
         response.setModules(new ArrayList<>(moduleMap.values()));
 
+        return response;
+    }
+
+    public List<InstructorListData> instructorDataMapper(List<InstructorListEntity> entities){
+        List<InstructorListData> response = new ArrayList<>();
+
+        for (InstructorListEntity entity : entities) {
+            InstructorListData data = new InstructorListData();
+            data.setUserId(entity.getUserId());
+            data.setFullName(entity.getFullName());
+            response.add(data);
+        }
         return response;
     }
 }

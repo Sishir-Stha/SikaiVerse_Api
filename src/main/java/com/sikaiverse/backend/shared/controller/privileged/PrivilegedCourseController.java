@@ -9,6 +9,8 @@ import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.CourseInsertRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.UpdateCourseInfoRequest;
 import com.sikaiverse.backend.shared.dto.response.privileged.CourseData;
+import com.sikaiverse.backend.shared.dto.response.privileged.InstructorListData;
+import com.sikaiverse.backend.shared.dto.response.privileged.InstructorListResponse;
 import com.sikaiverse.backend.shared.service.privileged.PrivilegedCourseService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.object.UpdatableSqlQuery;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -29,7 +33,7 @@ public class PrivilegedCourseController {
         this.privilegedCourseService = privilegedCourseService;
     }
 
-    @GetMapping("/getEditInfo")
+    @PostMapping("/getEditInfo")
     public ResponseEntity<?> getEditCourseInfo(@Valid @RequestBody CourseIdRequest request){
     log.info("request recieved "+request.getCourseId());
         CourseData response = privilegedCourseService.getEditCourseInfo(request);
@@ -68,12 +72,30 @@ public class PrivilegedCourseController {
                 return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
             }else{
                 log.debug("<< Failed in updating the course >>");
-                return ResponseEntity.status(HttpConstants.FAILED).body("Failed in updating the course");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE,"Failed in updating the course"));
             }
         }catch(Exception e){
             log.error("Error while updating the course Info : {}",request.getCourseId(), e);
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
         }
+    }
+
+    @PostMapping("/getInstructorList")
+    public ResponseEntity<?> getInstructorList(){
+        try{
+            List<InstructorListData> data = privilegedCourseService.getInstructorList();
+            if(data != null){
+                log.info("<< Instructor List Fetched >>");
+                return ResponseEntity.ok(new InstructorListResponse(StatusConstants.SUCCESS,data));
+            }else{
+                log.debug("<< Instructor List Fetching failed >>");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE,"Failed to fetched instructor list"));
+            }
+        }catch(Exception e){
+            log.error("Error while fetching the instructor list {}", e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
+        }
+
     }
 
 }

@@ -4,7 +4,9 @@ import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.CourseInsertRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.UpdateCourseInfoRequest;
 import com.sikaiverse.backend.shared.dto.response.privileged.CourseData;
+import com.sikaiverse.backend.shared.dto.response.privileged.InstructorListData;
 import com.sikaiverse.backend.shared.entity.privileged.EditCourseInfoEntity;
+import com.sikaiverse.backend.shared.entity.privileged.InstructorListEntity;
 import com.sikaiverse.backend.shared.mapper.privileged.PrivilegedEntityToDto;
 import com.sikaiverse.backend.shared.repository.privileged.PrivilegedCourseRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -50,6 +52,16 @@ public class PrivilegedCourseService {
 
     public boolean updateCourseInfo(UpdateCourseInfoRequest request){
          return privilegedCourseRepository.updateCourseInfo( request.getCourseId(),request.getUserId(), request.getCourseTitle(),request.getDescription(), request.getLevel().toLowerCase(), request.getCategory());
+    }
+
+    public List<InstructorListData> getInstructorList(){
+        List<InstructorListEntity> entity = privilegedCourseRepository.getInstructorList();
+        if(entity != null){
+            List<InstructorListData> data = mapper.instructorDataMapper(entity);
+            return data;
+        }else{
+            return null;
+        }
     }
 }
 
