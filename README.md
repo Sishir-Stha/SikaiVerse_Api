@@ -131,6 +131,9 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2025/02/02
 -- added endpoint to edit the course info details only allowed to the instructors and admin
 
+### 2025/02/0
+-- added new feild in the user for the UI to show new feild like phone number and address 
+
 
 
 
