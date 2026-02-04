@@ -54,7 +54,7 @@ A backend service for LMS of the Course Management System. This project is curre
 - Changed the project structure a little bit
 - Added the getDashboard endpoint which gives all the data for student dashboard
 
-### 2025/12/17
+### 2026/12/17
 
 - added enpoint for course tabs page for the students
 - added the endpoint for the dashboard for instructors 
@@ -87,53 +87,58 @@ A backend service for LMS of the Course Management System. This project is curre
 
 - changed few names and added new endpoint in privileged to add the course
 
-### 2025/12/30
+### 2026/12/30
 - changed few things like @Id in the entity class of admin and student dashboard for the error repetation
 - added userid in the auth response for student and instructor endpoint required in frontend 
 
-### 2025/01/02
+### 2026/01/02
 - added the catgeory in the landing browse or course list entity and dto
 - making minor changes for debuging 
 
-### 2025/01/03
+### 2026/01/03
 - adding the profile section for the profile page of student, admin and instructor
 
-### 2025/01/04
+### 2026/01/04
 - adding the update profile section in the shared/all and admin/user 
 
-### 2025/01/07
+### 2026/01/07
 - added the admin course list data for the course list in the discussion tab of the instructor which displays only assigned course
 
-### 2025/01/10
+### 2026/01/10
 - added the admin course list data for the course list in the discussion tab of the admin which displays all the course 
 
-### 2025/01/14
+### 2026/01/14
 - added the get discussion post and replies for any course id in shared/all
 
-### 2025/01/16
+### 2026/01/16
 - added the endpoint for the course details page for the student 
 - added new feilds i.e no of lesson in the admin and instructor discussion list and few other changes
 
-### 2025/01/23
+### 2026/01/23
 - added the endpoint for side panel for the lesson details page for the student 
 - added the function in the database for it 
 
-### 2025/01/26
+### 2026/01/26
 - added the endpoint for the lesson details page for the student
 - added and altered the tables for this endpoint in database
 
-### 2025/01/29
+### 2026/01/29
 -- added the Lesson endpoint for enrollment verification and added the function to the database
 
-### 2025/01/31
+### 2026/01/31
 -- added the set Inprogress and Set Completed for the lesson to change the status of the lesson once student completed it 
 
-### 2025/02/02
+### 2026/02/02
 -- added endpoint to edit the course info details only allowed to the instructors and admin
 
-### 2025/02/0
+### 2026/02/04
 -- added new feild in the user for the UI to show new feild like phone number and address 
 
+### 2026/02/0
+-- added new endpoint to insert user for admin only
+
+### 2026/02/0
+-- added new endpoint to delete the user for admin only 
 
 
 
