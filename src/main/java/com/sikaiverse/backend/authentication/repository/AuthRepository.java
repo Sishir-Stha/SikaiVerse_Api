@@ -11,7 +11,7 @@ public interface AuthRepository extends JpaRepository<AuthUserEntity,Long> {
     AuthUserEntity login(@Param("email") String email,
                             @Param("password") String password);
 
-    @Query (value = "select * from public.admin_insert_user(:fullName,:email,:password,:role);",nativeQuery = true)
+    @Query (value = "select * from public.admin_insert_user(:fullName,:email,:password,:role,'active');",nativeQuery = true)
     Boolean insertuser(@Param("fullName") String fullName,
                        @Param("email") String email,
                        @Param("password") String password,

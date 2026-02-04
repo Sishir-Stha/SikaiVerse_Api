@@ -1,6 +1,8 @@
 package com.sikaiverse.backend.admin.controller;
 
 import com.sikaiverse.backend.admin.dto.request.AdminUpdateUserRequest;
+import com.sikaiverse.backend.admin.dto.request.AdminUserIdRequest;
+import com.sikaiverse.backend.admin.dto.request.AdminUserInsertRequest;
 import com.sikaiverse.backend.admin.dto.response.user.AdminUserData;
 import com.sikaiverse.backend.admin.dto.response.user.AdminUserResponse;
 import com.sikaiverse.backend.admin.service.AdminUserService;
@@ -29,6 +31,23 @@ public class AdminUserController {
         this.adminUserService = adminUserService;
     }
 
+    @PostMapping("/insertUser")
+    public ResponseEntity<?> insertUser(@Valid @RequestBody AdminUserInsertRequest request){
+        try {
+            boolean created = adminUserService.insertUser(request);
+            if (created){
+                log.info("<< " +request.getRole()+" Created Sucessfully>>");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            }else{
+                log.debug("User is null ( Invalid user or credentials )");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE,"Failed to create user"));
+            }
+        }catch (Exception e){
+            log.error("Error occurred during login for user: {}", request.getEmail(), e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE,"Server Error "));
+        }
+    }
+
     @GetMapping("/getUserList")
     public ResponseEntity<?> getAllUser(){
     try {
@@ -47,10 +66,27 @@ public class AdminUserController {
     }
     }
 
+
     @PostMapping("/updateProfileInfo")
     public ResponseEntity<?> updateProfileInfo(@Valid @RequestBody AdminUpdateUserRequest request) {
         try {
             boolean data = adminUserService.updateProfileData(request);
+            if (data) {
+                log.info("  << Updating Profile Info for userId : " + request.getUserId() + " >>");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            }
+            log.debug(" << Upadating Profile Info failed for userId : >>" + request.getUserId());
+            return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Error while updating the profile Info"));
+        } catch (Exception e) {
+            log.error("<< Error while updating the profile info>>");
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Error while updating the profile Info"));
+        }
+    }
+
+    @DeleteMapping("/deleteUser")
+    public ResponseEntity<?> deleteUser(@Valid @RequestBody AdminUserIdRequest request){
+        try {
+            boolean data = adminUserService.deleteUser(request);
             if (data) {
                 log.info("  << Updating Profile Info for userId : " + request.getUserId() + " >>");
                 return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
