@@ -23,4 +23,8 @@ public interface CourseRepository extends JpaRepository<SideBarEntity,String> {
     @Query(value = "SELECT set_lesson_completed(:userId, :lessonId);", nativeQuery = true)
     boolean setCompleted(@Param("lessonId") int lessonId,
                           @Param("userId") int userId);
+
+    @Query(value = "SELECT student_insert_enrollment(:userId,:courseId);",nativeQuery = true)
+    boolean insertEnrolled(@Param("userId") int userId,
+                           @Param("courseId") int courseId);
 }

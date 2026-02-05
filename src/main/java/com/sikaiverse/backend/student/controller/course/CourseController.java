@@ -5,12 +5,14 @@ import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
+import com.sikaiverse.backend.student.dto.request.CourseEnrollmentRequest;
 import com.sikaiverse.backend.student.dto.request.CourseIdRequest;
 import com.sikaiverse.backend.student.dto.request.LearnLessonRequest;
 import com.sikaiverse.backend.student.dto.request.LessonIdRequest;
 import com.sikaiverse.backend.student.dto.response.course.*;
 import com.sikaiverse.backend.student.entity.course.LessonEntity;
 import com.sikaiverse.backend.student.service.course.CourseService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -63,7 +65,7 @@ public class CourseController {
     }
 
     @PostMapping("/setInProgress")
-    public ResponseEntity<?> isProgress (@RequestBody LearnLessonRequest request){
+    public ResponseEntity<?> setInProgress(@RequestBody LearnLessonRequest request){
         try{
             boolean isEnrolled = service.setInprogress(request);
             if(isEnrolled){
@@ -80,7 +82,7 @@ public class CourseController {
     }
 
     @PostMapping("/setCompleted")
-    public ResponseEntity<?> isEnrolled(@RequestBody LearnLessonRequest request){
+    public ResponseEntity<?> setComplete(@RequestBody LearnLessonRequest request){
         try{
             boolean isEnrolled = service.setCompleted(request);
             if(isEnrolled){
@@ -93,6 +95,23 @@ public class CourseController {
         }catch (Exception e) {
             log.error("Error occurred during setting course Completed ", e);
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error during setting course completed"));
+        }
+    }
+
+    @PostMapping("/enroll")
+    public ResponseEntity<?> insertEnroll(@Valid @RequestBody CourseEnrollmentRequest request){
+        try{
+            boolean isEnrolled = service.insertEnrolled(request);
+            if(isEnrolled){
+                log.info(" Enroll Course Successfully ");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            }else{
+                log.info(" Enroll course failed || Invalid from DB ");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE," Enroll course failed || Invalid from DB "));
+            }
+        }catch (Exception e) {
+            log.error("Error occurred during enrolling course ", e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error during enrolling course failed "));
         }
     }
 }

@@ -141,5 +141,9 @@ A backend service for LMS of the Course Management System. This project is curre
 -- added new endpoint to delete the user for admin only 
 
 
+### 2026/02/0
+-- added new endpoint to enroll user and a endpoint to get the course detial of the viewing in the course browse and enrollment
+
+
 
 

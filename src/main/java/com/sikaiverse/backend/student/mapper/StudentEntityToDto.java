@@ -97,16 +97,13 @@ public class StudentEntityToDto {
 
     public List<StudentEnrolledModuleData> parseModuleData(String jsonModules) {
         if (jsonModules == null || jsonModules.isBlank() || jsonModules.equals("[]")) {
-            log.debug("<<No Modules found ! >>");
             return new ArrayList<>();
         } else {
             List<StudentEnrolledModuleData> modules = mapper.readValue(jsonModules,
                     new TypeReference<List<StudentEnrolledModuleData>>() {
                     }
             );
-            log.info("<<modules parsed >>" + modules);
             return modules;
-
         }
     }
 
