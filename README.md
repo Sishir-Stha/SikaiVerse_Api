@@ -134,15 +134,24 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2026/02/04
 -- added new feild in the user for the UI to show new feild like phone number and address 
 
-### 2026/02/0
+### 2026/02/06
 -- added new endpoint to insert user for admin only
 
-### 2026/02/0
+### 2026/02/08
 -- added new endpoint to delete the user for admin only 
 
 
+### 2026/02/10
+-- added new endpoint to enroll user and endpoint to get the course detail of the viewing in the course browse and enrollment
+
+
 ### 2026/02/0
--- added new endpoint to enroll user and a endpoint to get the course detial of the viewing in the course browse and enrollment
+-- added new endpoint to like the reply and post of the dissussion in the discussion tab
+
+
+### 2026/02/0
+-- added new endpoint to create a post and reply 
+
 
 
 

@@ -1,6 +1,7 @@
 package com.sikaiverse.backend.landing.service;
 
 import com.sikaiverse.backend.landing.dto.request.CourseListRequest;
+import com.sikaiverse.backend.landing.dto.request.IsEnrolledRequest;
 import com.sikaiverse.backend.landing.dto.request.LandingCourseIdRequest;
 import com.sikaiverse.backend.landing.dto.response.CourseDataResponse;
 import com.sikaiverse.backend.landing.dto.response.CourseDetailData;
@@ -46,4 +47,8 @@ public class CourseListService {
         }
     }
 
+
+    public boolean isEnrolled(IsEnrolledRequest request){
+        return courseListRepository.isEnrolled(request.getCourseId(),request.getUserId());
+    }
 }

@@ -5,12 +5,12 @@ import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
-import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
-import com.sikaiverse.backend.shared.dto.request.all.PostIdRequest;
-import com.sikaiverse.backend.shared.dto.request.all.ReplyIdRequest;
+import com.sikaiverse.backend.shared.dto.request.all.*;
 import com.sikaiverse.backend.shared.dto.response.all.DiscussionDto;
 import com.sikaiverse.backend.shared.dto.response.all.DiscussionResponse;
 import com.sikaiverse.backend.shared.service.all.DiscussionService;
+import com.sikaiverse.backend.student.dto.response.course.LearnLessonResponse;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,6 +77,40 @@ public class DiscussionController {
         }catch(Exception e){
             log.error("Error while retriving Discussion list ");
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
+        }
+    }
+
+    @PostMapping("/addPostReply")
+    public ResponseEntity<?> addPostReply(@Valid @RequestBody PostMessageRequest request) {
+        try {
+            boolean isEnrolled = discussionService.addPostReply(request);
+            if (isEnrolled) {
+                log.info(" Post is created ");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            } else {
+                log.info("Post is not created due to database problem ");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Post is not created due to database problem "));
+            }
+        } catch (Exception e) {
+            log.error(" Error occurred during creating the post ", e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error "));
+        }
+    }
+
+    @PostMapping("/addReply")
+    public ResponseEntity<?> addReply(@Valid @RequestBody ReplyMessageRequest request) {
+        try {
+            boolean isEnrolled = discussionService.addReplies(request);
+            if (isEnrolled) {
+                log.info(" Reply is Posted");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            } else {
+                log.info("Reply is not posted due to database problem ");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, " Reply is not created due to database problem "));
+            }
+        } catch (Exception e) {
+            log.error("Error occurred during creating the reply ", e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, " Server Error "));
         }
     }
 

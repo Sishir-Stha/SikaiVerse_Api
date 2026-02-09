@@ -60,6 +60,7 @@ public class StudentEntityToDto {
             StudentCourseInfoData dto = new StudentCourseInfoData();
             dto.setCourseId(entity.getCourseId());
             dto.setCourseTitle(entity.getCourseTitle());
+            dto.setDescription(entity.getDescription());
             dto.setLevel(entity.getLevel());
             dto.setInstructorName(entity.getInstructorName());
             dto.setTotalModules(entity.getTotalModule());

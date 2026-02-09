@@ -1,8 +1,6 @@
 package com.sikaiverse.backend.shared.service.all;
 
-import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
-import com.sikaiverse.backend.shared.dto.request.all.PostIdRequest;
-import com.sikaiverse.backend.shared.dto.request.all.ReplyIdRequest;
+import com.sikaiverse.backend.shared.dto.request.all.*;
 import com.sikaiverse.backend.shared.dto.response.all.DiscussionDto;
 import com.sikaiverse.backend.shared.entity.all.DiscussionEntity;
 import com.sikaiverse.backend.shared.mapper.all.AllEntityToDto;
@@ -29,7 +27,6 @@ public class DiscussionService {
     public List<DiscussionDto> getDiscussion(CourseIdRequest request){
 
         List<DiscussionEntity> entities = discussionRepository.getDiscussionInfo(request.getCourseId());
-        log.info("jghc"+entities);
         if(entities != null || !entities.isEmpty()){
             List<DiscussionDto> response = mapper.discussionMapper(entities);
             return response;
@@ -39,16 +36,19 @@ public class DiscussionService {
     }
 
     public boolean likeDiscussionPost (PostIdRequest request){
-
-        boolean liked = discussionRepository.likeDiscussionPost(request.getPostId());
-        return liked;
-
+        return discussionRepository.likeDiscussionPost(request.getPostId());
     }
 
     public boolean likeReplyPost (ReplyIdRequest request){
-
-        boolean liked = discussionRepository.likeReplyPost(request.getReplyId());
-        return liked;
-
+        return discussionRepository.likeReplyPost(request.getReplyId());
     }
+
+    public boolean addPostReply(PostMessageRequest request){
+        return discussionRepository.addPostReply(request.getCourseId(), request.getUserId(), request.getTitle(), request.getContent());
+    }
+
+    public boolean addReplies(ReplyMessageRequest request){
+        return discussionRepository.addReplies(request.getPostId(), request.getUserId(), request.getContent());
+    }
+
 }

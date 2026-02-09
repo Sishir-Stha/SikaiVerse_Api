@@ -23,9 +23,9 @@ public interface CourseListRepository extends JpaRepository<CourseListEntity,Lon
     @Query(value = "select * from  get_course_detail(:courseId);",nativeQuery = true)
     CourseDetailEntity getCourseDetail(@Param("courseId") int courseId);
 
-    @Query(value = "",nativeQuery = true)
-    boolean enrolled(@Param("courseId") int courseId,
-                     @Param("userId") int userId);
+    @Query(value = "SELECT is_user_enrolled(:userId,:courseId);",nativeQuery = true)
+    boolean isEnrolled(@Param("courseId") int courseId,
+                         @Param("userId") int userId);
 
 }
 

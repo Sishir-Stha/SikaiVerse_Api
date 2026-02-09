@@ -3,14 +3,17 @@ package com.sikaiverse.backend.landing.controller;
 import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
+import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.landing.dto.request.CourseListRequest;
+import com.sikaiverse.backend.landing.dto.request.IsEnrolledRequest;
 import com.sikaiverse.backend.landing.dto.request.LandingCourseIdRequest;
 import com.sikaiverse.backend.landing.dto.response.CourseDataResponse;
 import com.sikaiverse.backend.landing.dto.response.CourseDetailData;
 import com.sikaiverse.backend.landing.dto.response.CourseDetailResponse;
 import com.sikaiverse.backend.landing.dto.response.CourseListResponse;
 import com.sikaiverse.backend.landing.service.CourseListService;
+import com.sikaiverse.backend.student.dto.response.course.LearnLessonResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +70,24 @@ public class CourseListController {
         }catch(Exception e){
             log.error("<< Error while fetching the course details >>");
             return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE,"Error occured while fetching data "));
+        }
+    }
+
+    @PostMapping("/isEnrolled")
+    public ResponseEntity<?> isEnrolled(@Valid @RequestBody IsEnrolledRequest request){
+        try{
+            log.info(""+request);
+            boolean isEnrolled = courseListService.isEnrolled(request);
+            if(isEnrolled){
+                log.info(" Course is Enrolled ");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            }else{
+                log.info(" Course is not Enrolled or Invalid ");
+                return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE,"Not Enrolled or Invalid"));
+            }
+        }catch (Exception e) {
+            log.error("Error occurred during enrolled check", e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Server Error "));
         }
     }
 }
