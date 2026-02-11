@@ -37,6 +37,26 @@ public interface PrivilegedCourseRepository extends JpaRepository<EditCourseInfo
             @Param("totalStudents") Integer totalStudents
     );
 
+
+    @Query(value = "SELECT privileged_insert_module(:courseId,:moduleTitle, :description);",nativeQuery = true)
+    Boolean insertModule(
+            @Param("courseId") Integer courseId,
+            @Param("moduleTitle") String moduleTitle,
+            @Param("description") String description);
+
+    @Query(value = "SELECT privileged_insert_lesson(:moduleId, :lessonTitle, :lessonContent, :description, :contentType, :contentData, :fileData, :duration);", nativeQuery = true)
+    Boolean insertLesson(
+            @Param("moduleId") Integer moduleId,
+            @Param("lessonTitle") String lessonTitle,
+            @Param("lessonContent") String lessonContent,
+            @Param("description") String description,
+            @Param("contentType") String contentType,
+            @Param("contentData") String contentData,
+            @Param("fileData") byte[] fileData,
+            @Param("duration") Integer duration
+    );
+
+
     @Query(value = "SELECT * FROM get_instructor_list();",nativeQuery = true)
     List<InstructorListEntity> getInstructorList();
 }

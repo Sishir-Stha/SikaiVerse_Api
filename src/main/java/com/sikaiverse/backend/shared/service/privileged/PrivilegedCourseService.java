@@ -2,6 +2,8 @@ package com.sikaiverse.backend.shared.service.privileged;
 
 import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.CourseInsertRequest;
+import com.sikaiverse.backend.shared.dto.request.privileged.LessonInsertRequest;
+import com.sikaiverse.backend.shared.dto.request.privileged.ModuleInsertRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.UpdateCourseInfoRequest;
 import com.sikaiverse.backend.shared.dto.response.privileged.CourseData;
 import com.sikaiverse.backend.shared.dto.response.privileged.InstructorListData;
@@ -54,6 +56,20 @@ public class PrivilegedCourseService {
          return privilegedCourseRepository.updateCourseInfo( request.getCourseId(),request.getUserId(), request.getCourseTitle(),request.getDescription(), request.getLevel().toLowerCase(), request.getCategory());
     }
 
+    public Boolean addModule(ModuleInsertRequest req) {
+        return privilegedCourseRepository.insertModule(req.getCourseId(), req.getModuleTitle(), req.getDescription());
+    }
+
+    public Boolean addLesson(LessonInsertRequest req) {
+        return privilegedCourseRepository.insertLesson(req.getModuleId(),req.getLessonTitle(),req.getLessonContent(), req.getDescription(),req.getContentType(),req.getContentData(), ,req.getDuration());
+    }
+
+
+
+
+
+
+
     public List<InstructorListData> getInstructorList(){
         List<InstructorListEntity> entity = privilegedCourseRepository.getInstructorList();
         if(entity != null){
@@ -63,6 +79,13 @@ public class PrivilegedCourseService {
             return null;
         }
     }
+
+
+
+
+
+
+
 }
 
 
