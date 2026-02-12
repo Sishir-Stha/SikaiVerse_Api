@@ -1,13 +1,13 @@
 package com.sikaiverse.backend.shared.controller.privileged;
 
+import com.sikaiverse.backend.admin.dto.request.AdminUserIdRequest;
 import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
 import com.sikaiverse.backend.common.utils.BooleanResponse;
 import com.sikaiverse.backend.common.utils.ErrorMessage;
 import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
-import com.sikaiverse.backend.shared.dto.request.privileged.CourseInsertRequest;
-import com.sikaiverse.backend.shared.dto.request.privileged.UpdateCourseInfoRequest;
+import com.sikaiverse.backend.shared.dto.request.privileged.*;
 import com.sikaiverse.backend.shared.dto.response.privileged.CourseData;
 import com.sikaiverse.backend.shared.dto.response.privileged.InstructorListData;
 import com.sikaiverse.backend.shared.dto.response.privileged.InstructorListResponse;
@@ -31,6 +31,22 @@ public class PrivilegedCourseController {
     @Autowired
     public PrivilegedCourseController(PrivilegedCourseService privilegedCourseService){
         this.privilegedCourseService = privilegedCourseService;
+    }
+
+    @DeleteMapping("/deleteCourse")
+    public ResponseEntity<?> deleteCourse(@Valid @RequestBody PrivilegedCourseId request){
+        try {
+            boolean data = privilegedCourseService.deleteCourse(request);
+            if (data) {
+                log.info("  << Updating Profile Info for userId : " + request.getCourseId() + " >>");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            }
+            log.debug(" << Upadating Profile Info failed for userId : >>" + request.getCourseId());
+            return ResponseEntity.status(HttpConstants.FAILED).body(new ErrorMessage(StatusConstants.FAILURE, "Error while updating the profile Info"));
+        } catch (Exception e) {
+            log.error("<< Error while updating the profile info>>");
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Error while updating the profile Info"));
+        }
     }
 
     @PostMapping("/getEditInfo")
@@ -62,6 +78,41 @@ public class PrivilegedCourseController {
             return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
         }
     }
+
+    @PostMapping("/add/Module")
+    public ResponseEntity<?> insertModule(@Valid @RequestBody ModuleInsertRequest request){
+        try{
+            Boolean isCreated = privilegedCourseService.addModule(request);
+            if(isCreated){
+                log.info("<< Course inserted Sucessfully with title : " +request.getModuleTitle() +" >>");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            }else{
+                log.debug("<< Failed in inserting the course >>");
+                return ResponseEntity.status(HttpConstants.FAILED).body("Failed in inserting the course");
+            }
+        }catch(Exception e){
+            log.error("Error while inserting the course of title  : {}",request.getModuleTitle(), e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
+        }
+    }
+
+    @PostMapping("/add/Lesson")
+    public ResponseEntity<?> insertLesson(@Valid @RequestBody LessonInsertRequest request){
+        try{
+            Boolean isCreated = privilegedCourseService.addLesson(request);
+            if(isCreated){
+                log.info("<< Course inserted Sucessfully with title : " +request.getLessonTitle() +" >>");
+                return ResponseEntity.ok(new BooleanResponse(StatusConstants.SUCCESS));
+            }else{
+                log.debug("<< Failed in inserting the course >>");
+                return ResponseEntity.status(HttpConstants.FAILED).body("Failed in inserting the course");
+            }
+        }catch(Exception e){
+            log.error("Error while inserting the course of title  : {}",request.getLessonTitle(), e);
+            return ResponseEntity.status(HttpConstants.INTERNAL_SERVER_ERROR).body(new ErrorMessage(StatusConstants.FAILURE, "Internal Server Error !!"));
+        }
+    }
+
 
     @PostMapping("/update/CourseInfo")
     public ResponseEntity<?> updateCourseInfo(@Valid @RequestBody UpdateCourseInfoRequest request){

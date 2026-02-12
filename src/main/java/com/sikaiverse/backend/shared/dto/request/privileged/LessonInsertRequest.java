@@ -2,6 +2,8 @@ package com.sikaiverse.backend.shared.dto.request.privileged;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 @Data
 public class LessonInsertRequest {
@@ -24,6 +26,8 @@ public class LessonInsertRequest {
 
     @JsonProperty("contentData")
     private String contentData;
+
+    private MultipartFile flieData;
 
     @JsonProperty("duration")
     private Integer duration = 0;

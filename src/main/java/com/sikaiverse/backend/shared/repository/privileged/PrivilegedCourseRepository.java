@@ -59,4 +59,9 @@ public interface PrivilegedCourseRepository extends JpaRepository<EditCourseInfo
 
     @Query(value = "SELECT * FROM get_instructor_list();",nativeQuery = true)
     List<InstructorListEntity> getInstructorList();
+
+
+    @Query(value = "select privileged_delete_course(:courseId);",nativeQuery = true)
+    Boolean deleteCourse(@Param("courseId") Integer courseId);
+
 }

@@ -140,17 +140,18 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2026/02/08
 -- added new endpoint to delete the user for admin only 
 
-
 ### 2026/02/10
 -- added new endpoint to enroll user and endpoint to get the course detail of the viewing in the course browse and enrollment
 
-
-### 2026/02/0
+### 2026/02/11
 -- added new endpoint to like the reply and post of the dissussion in the discussion tab
 
+### 2026/02/12
+-- added new endpoint to create a post and reply 
 
 ### 2026/02/0
--- added new endpoint to create a post and reply 
+-- added new endpoint to create the lesson course and module
+-- need to add endpoint to get the list of of the course title for the module 
 
 
 
