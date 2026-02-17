@@ -36,7 +36,9 @@ public class InstructorCourseController {
     @PostMapping("/getCourseInfo")
     public ResponseEntity<?> getCourseInfo(@RequestBody InstructorIdRequest request) {
         try {
+            log.info("request : " +request);
             List<InstructorCourseInfoData> data = instructorCourseService.getCourseInfo(request);
+            log.debug("response data :" + data);
             if (data != null || !data.isEmpty()) {
                 log.info(" << Course info is loaded for InstructorId : " + request.getUserId() + " >> ");
                 return ResponseEntity.ok(new InstructorCourseInfoResponse(StatusConstants.SUCCESS, data));

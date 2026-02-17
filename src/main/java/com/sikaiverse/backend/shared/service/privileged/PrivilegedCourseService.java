@@ -75,7 +75,7 @@ public class PrivilegedCourseService {
                 ? requestDto.getContentType()
                 : "link";
 
-        MultipartFile file = requestDto.getFlieData();
+        MultipartFile file = requestDto.getFileData();
 
         if (file != null && !file.isEmpty()) {
 

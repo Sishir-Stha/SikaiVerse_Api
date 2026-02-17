@@ -149,9 +149,9 @@ A backend service for LMS of the Course Management System. This project is curre
 ### 2026/02/12
 -- added new endpoint to create a post and reply 
 
-### 2026/02/0
+### 2026/02/16
 -- added new endpoint to create the lesson course and module
--- need to add endpoint to get the list of of the course title for the module 
+-- need to add endpoint to get the list of the course title for the module 
 
 
 

@@ -27,7 +27,7 @@ public class LessonInsertRequest {
     @JsonProperty("contentData")
     private String contentData;
 
-    private MultipartFile flieData;
+    private MultipartFile fileData;
 
     @JsonProperty("duration")
     private Integer duration = 0;
