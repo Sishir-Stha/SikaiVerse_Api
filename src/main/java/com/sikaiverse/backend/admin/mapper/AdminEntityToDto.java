@@ -49,10 +49,13 @@ public class AdminEntityToDto {
 
         for (AdminUserInfoEntity entity : entities) {
             AdminUserData dto = new AdminUserData();
+            dto.setUserId(entity.getUserId());
             dto.setFullName(entity.getFullName());
             dto.setEmail(entity.getEmail());
             dto.setRole(entity.getRole());
             dto.setStatus(entity.getStatus());
+            dto.setPhoneNumber(entity.getPhoneNumber());
+            dto.setAddress(entity.getAddress());
             dto.setJoinedDate(entity.getJoinedDate());
             responses.add(dto);
         }

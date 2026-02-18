@@ -20,4 +20,18 @@ public interface AdminUserRepository extends JpaRepository<AdminUserInfoEntity,I
                               @Param("status") String status,
                               @Param("phoneNumber") String phoneNumber,
                               @Param("address") String address);
+
+    @Query(value = "select public.admin_insert_user(:fullName, :email,:password,:role,:status,:phoneNumber,:address);",nativeQuery = true)
+    Boolean insertUserProfile ( @Param("fullName") String fullName,
+                                @Param("email") String email,
+                                @Param("password") String password,
+                                @Param("role") String role,
+                                @Param("status") String status,
+                                @Param("phoneNumber") String phoneNumber,
+                                @Param("address") String address);
+
+    @Query(value = "select admin_delete_user(:userId);",nativeQuery = true)
+    Boolean deleteUser(@Param("userId") Integer userId);
+
+
 }

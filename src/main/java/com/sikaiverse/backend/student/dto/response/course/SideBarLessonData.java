@@ -7,5 +7,6 @@ public class SideBarLessonData {
     private int lessonId;
     private String lessonTitle;
     private int duration;
+    private String status;
 
 }

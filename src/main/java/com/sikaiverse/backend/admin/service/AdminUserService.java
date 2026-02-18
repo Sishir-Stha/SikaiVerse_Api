@@ -1,6 +1,8 @@
 package com.sikaiverse.backend.admin.service;
 
 import com.sikaiverse.backend.admin.dto.request.AdminUpdateUserRequest;
+import com.sikaiverse.backend.admin.dto.request.AdminUserIdRequest;
+import com.sikaiverse.backend.admin.dto.request.AdminUserInsertRequest;
 import com.sikaiverse.backend.admin.dto.response.user.AdminUserData;
 import com.sikaiverse.backend.admin.entity.AdminUserInfoEntity;
 import com.sikaiverse.backend.admin.mapper.AdminEntityToDto;
@@ -20,6 +22,11 @@ public class AdminUserService {
         this.mapper = mapper;
     }
 
+    public boolean insertUser(AdminUserInsertRequest request){
+        return adminUserRepository.insertUserProfile(request.getFullName(), request.getEmail(), request.getPassword(), request.getRole().toLowerCase(), "active", request.getPhoneNumber(), request.getAddress());
+    }
+
+
     public List<AdminUserData> getUserInfo(){
 
         List<AdminUserInfoEntity> entities = adminUserRepository.getUserInfo();
@@ -30,7 +37,12 @@ public class AdminUserService {
             return null;
         }
     }
+
     public boolean updateProfileData(AdminUpdateUserRequest request){
         return adminUserRepository.updateUserProfile(request.getUserId(), request.getFullName(), request.getEmail(),request.getRole(), request.getStatus(), request.getPhoneNumber(), request.getAddress());
+    }
+
+    public boolean deleteUser (AdminUserIdRequest request){
+        return adminUserRepository.deleteUser(request.getUserId());
     }
 }

@@ -60,6 +60,7 @@ public class StudentEntityToDto {
             StudentCourseInfoData dto = new StudentCourseInfoData();
             dto.setCourseId(entity.getCourseId());
             dto.setCourseTitle(entity.getCourseTitle());
+            dto.setDescription(entity.getDescription());
             dto.setLevel(entity.getLevel());
             dto.setInstructorName(entity.getInstructorName());
             dto.setTotalModules(entity.getTotalModule());
@@ -97,16 +98,13 @@ public class StudentEntityToDto {
 
     public List<StudentEnrolledModuleData> parseModuleData(String jsonModules) {
         if (jsonModules == null || jsonModules.isBlank() || jsonModules.equals("[]")) {
-            log.debug("<<No Modules found ! >>");
             return new ArrayList<>();
         } else {
             List<StudentEnrolledModuleData> modules = mapper.readValue(jsonModules,
                     new TypeReference<List<StudentEnrolledModuleData>>() {
                     }
             );
-            log.info("<<modules parsed >>" + modules);
             return modules;
-
         }
     }
 

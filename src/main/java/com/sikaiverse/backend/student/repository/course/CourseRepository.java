@@ -13,7 +13,7 @@ public interface CourseRepository extends JpaRepository<SideBarEntity,String> {
     @Query(value = "SELECT * FROM get_course_page_sidebar(:courseId);", nativeQuery = true)
     SideBarEntity getSideBar(@Param("courseId") int courseId);
 
-    @Query(value = "SELECT * FROM enrolled_lesson_details(:lessonId);", nativeQuery = true)
+    @Query(value = "SELECT * FROM get_student_enrolled_lesson_details(:lessonId);", nativeQuery = true)
     LessonEntity getLessonDetails(@Param("lessonId") int lessonId);
 
     @Query(value = "SELECT * FROM set_lesson_in_progress(:userId, :lessonId);", nativeQuery = true)
@@ -23,4 +23,8 @@ public interface CourseRepository extends JpaRepository<SideBarEntity,String> {
     @Query(value = "SELECT set_lesson_completed(:userId, :lessonId);", nativeQuery = true)
     boolean setCompleted(@Param("lessonId") int lessonId,
                           @Param("userId") int userId);
+
+    @Query(value = "SELECT get_student_insert_enrollment(:userId,:courseId);",nativeQuery = true)
+    boolean insertEnrolled(@Param("userId") int userId,
+                           @Param("courseId") int courseId);
 }
