@@ -154,6 +154,12 @@ A backend service for LMS of the Course Management System. This project is curre
 -- need to add endpoint to get the list of the course title for the module 
 
 
+### 2026/03/12
+-- added the endpoint to connect to the AI and get response 
+--worked on AI to host it locally 
+
+
+
 
 
 

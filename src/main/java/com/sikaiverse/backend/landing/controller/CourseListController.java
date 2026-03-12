@@ -13,7 +13,6 @@ import com.sikaiverse.backend.landing.dto.response.CourseDetailData;
 import com.sikaiverse.backend.landing.dto.response.CourseDetailResponse;
 import com.sikaiverse.backend.landing.dto.response.CourseListResponse;
 import com.sikaiverse.backend.landing.service.CourseListService;
-import com.sikaiverse.backend.student.dto.response.course.LearnLessonResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.plaf.PanelUI;
 import java.util.List;
 
 @Slf4j
@@ -41,6 +39,7 @@ public class CourseListController {
     @PostMapping("/list")
     public ResponseEntity<?> listFilteredCourse (@Valid @RequestBody CourseListRequest request){
         try {
+
             List<CourseDataResponse> data = courseListService.listFilteredCourse(request);
             if(data != null) {
                 log.info("<< Course Filtered List Fetched >>:");

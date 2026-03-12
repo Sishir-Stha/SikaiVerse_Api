@@ -1,9 +1,7 @@
 package com.sikaiverse.backend.student.dto.response.course;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
 
