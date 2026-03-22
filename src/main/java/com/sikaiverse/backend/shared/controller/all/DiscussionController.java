@@ -9,7 +9,6 @@ import com.sikaiverse.backend.shared.dto.request.all.*;
 import com.sikaiverse.backend.shared.dto.response.all.DiscussionDto;
 import com.sikaiverse.backend.shared.dto.response.all.DiscussionResponse;
 import com.sikaiverse.backend.shared.service.all.DiscussionService;
-import com.sikaiverse.backend.student.dto.response.course.LearnLessonResponse;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

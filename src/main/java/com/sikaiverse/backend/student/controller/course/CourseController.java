@@ -9,14 +9,19 @@ import com.sikaiverse.backend.student.dto.request.CourseEnrollmentRequest;
 import com.sikaiverse.backend.student.dto.request.CourseIdRequest;
 import com.sikaiverse.backend.student.dto.request.LearnLessonRequest;
 import com.sikaiverse.backend.student.dto.request.LessonIdRequest;
-import com.sikaiverse.backend.student.dto.response.course.*;
-import com.sikaiverse.backend.student.entity.course.LessonEntity;
+import com.sikaiverse.backend.student.dto.response.course.EnrolledLessonData;
+import com.sikaiverse.backend.student.dto.response.course.EnrolledLessonResponse;
+import com.sikaiverse.backend.student.dto.response.course.SideBarData;
+import com.sikaiverse.backend.student.dto.response.course.SideBarResponse;
 import com.sikaiverse.backend.student.service.course.CourseService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

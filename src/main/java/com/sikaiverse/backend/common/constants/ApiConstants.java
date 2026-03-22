@@ -2,6 +2,7 @@ package com.sikaiverse.backend.common.constants;
 
 public class ApiConstants {
     public static final String API_VERSION = "/api/v1";
+    public static final String API_VERSION_V2 = "/api/v2";
     //enpoints
 
     public static final String AUTH_BASE = API_VERSION +"/auth";
@@ -11,5 +12,6 @@ public class ApiConstants {
     public static final String COURSE_BASE = API_VERSION +"/course";
     public static final String SHARED_ALL_BASE = API_VERSION +"/shared/all";
     public static final String SHARED_PRIVILEGED_BASE = API_VERSION + "/shared/privileged";
+    public static final String AI_BASE = API_VERSION + "/ai";
 
 }

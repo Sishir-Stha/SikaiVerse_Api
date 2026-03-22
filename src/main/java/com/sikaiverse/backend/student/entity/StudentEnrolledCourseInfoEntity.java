@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
-import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 
 import java.math.BigDecimal;
 

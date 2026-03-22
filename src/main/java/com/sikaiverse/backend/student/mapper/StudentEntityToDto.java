@@ -1,6 +1,5 @@
 package com.sikaiverse.backend.student.mapper;
 
-import com.sikaiverse.backend.student.dto.response.course.SideBarData;
 import com.sikaiverse.backend.student.dto.response.course.StudentCourseInfoData;
 import com.sikaiverse.backend.student.dto.response.course.StudentEnrolledCourseData;
 import com.sikaiverse.backend.student.dto.response.course.StudentEnrolledModuleData;
@@ -9,7 +8,6 @@ import com.sikaiverse.backend.student.dto.response.dashboard.StudentDashboardInf
 import com.sikaiverse.backend.student.entity.StudentCourseInfoEntity;
 import com.sikaiverse.backend.student.entity.StudentDashboardInfoEntity;
 import com.sikaiverse.backend.student.entity.StudentEnrolledCourseInfoEntity;
-import com.sikaiverse.backend.student.entity.course.SideBarEntity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

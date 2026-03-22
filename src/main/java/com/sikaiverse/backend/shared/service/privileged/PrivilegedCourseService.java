@@ -1,6 +1,5 @@
 package com.sikaiverse.backend.shared.service.privileged;
 
-import com.sikaiverse.backend.admin.dto.request.AdminUserIdRequest;
 import com.sikaiverse.backend.shared.dto.request.all.CourseIdRequest;
 import com.sikaiverse.backend.shared.dto.request.privileged.*;
 import com.sikaiverse.backend.shared.dto.response.privileged.CourseData;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service

@@ -1,6 +1,5 @@
 package com.sikaiverse.backend.shared.controller.privileged;
 
-import com.sikaiverse.backend.admin.dto.request.AdminUserIdRequest;
 import com.sikaiverse.backend.common.constants.ApiConstants;
 import com.sikaiverse.backend.common.constants.HttpConstants;
 import com.sikaiverse.backend.common.constants.StatusConstants;
@@ -16,7 +15,6 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.object.UpdatableSqlQuery;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

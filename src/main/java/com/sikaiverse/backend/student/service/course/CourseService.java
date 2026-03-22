@@ -5,14 +5,12 @@ import com.sikaiverse.backend.student.dto.request.CourseIdRequest;
 import com.sikaiverse.backend.student.dto.request.LearnLessonRequest;
 import com.sikaiverse.backend.student.dto.request.LessonIdRequest;
 import com.sikaiverse.backend.student.dto.response.course.EnrolledLessonData;
-import com.sikaiverse.backend.student.dto.response.course.LearnLessonResponse;
 import com.sikaiverse.backend.student.dto.response.course.SideBarData;
 import com.sikaiverse.backend.student.entity.course.LessonEntity;
 import com.sikaiverse.backend.student.entity.course.SideBarEntity;
 import com.sikaiverse.backend.student.mapper.CourseEntityToDto;
 import com.sikaiverse.backend.student.repository.course.CourseRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.metamodel.mapping.ForeignKeyDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
