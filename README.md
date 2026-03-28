@@ -4,7 +4,20 @@ A backend service for LMS of the Course Management System. This project is curre
 
 #### Status : Developing
 
-#### Project Stage : Early Stages of foundation
+#### Project Stage : Final Stages of foundation
+
+## Steps To Follow to run
+
+1. git init 
+
+2. git clone https://github.com/Sishir-Stha/SikaiVerse_Api.git 
+ 
+3. Make application-dev.properties and copy the application-example and change the credentails
+
+4. create a new backend.env file for the production and put the production credentails there
+
+5. Then follow the .env instruction and run the program as SPRING_PROFILES_ACTIVE=dev for local and 
+   package the prod while skipping the tests for db
 
 # TechStack :
          - Java 21 
@@ -158,7 +171,8 @@ A backend service for LMS of the Course Management System. This project is curre
 -- added the endpoint to connect to the AI and get response 
 --worked on AI to host it locally 
 
-
+## 2026/03/28
+-- added the .env file and changes the application properties and credentials
 
 
 
