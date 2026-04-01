@@ -12,6 +12,6 @@ public class ApiConstants {
     public static final String COURSE_BASE = API_VERSION +"/course";
     public static final String SHARED_ALL_BASE = API_VERSION +"/shared/all";
     public static final String SHARED_PRIVILEGED_BASE = API_VERSION + "/shared/privileged";
-    public static final String AI_BASE = API_VERSION + "/ai";
+    public static final String AI_BASE = API_VERSION_V2 + "/ai";
 
 }
